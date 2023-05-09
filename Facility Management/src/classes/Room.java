@@ -1,6 +1,6 @@
 package classes;
 
-public class Room {
+public class Room extends maintainable {
     Building building;
     int level;
     private String name;

@@ -3,6 +3,9 @@ package ticketSystem;
 import java.util.Arrays;
 import java.util.Date;
 
+import classes.GroupEnum;
+import classes.maintainable;
+
 public class Ticket {
     // Basic info
     String title;
@@ -14,13 +17,14 @@ public class Ticket {
 
     // Handling info
     Date dueDate;
-    Object item;
+    maintainable item;
+    GroupEnum group;
 
     // Progress info
     boolean isArchived;
     StatusEnum status;
 
-    public Ticket(String title, String description, PriorityEnum prio, Object item) {
+    public Ticket(String title, String description, PriorityEnum prio, maintainable item, GroupEnum group) {
 
         // Fixed
         this.isArchived = false;
@@ -33,6 +37,7 @@ public class Ticket {
         // this.dueDate = dueDate;
         this.prio = prio;
         this.item = item;
+        this.group = group;
 
     }
 
@@ -46,7 +51,7 @@ public class Ticket {
 
     public String getEverything() {
         return this.title + "\n" + this.description + "\n" + this.creationDate + "\n" + this.prio + "\n"
-                + this.item.getClass() + "\n" + this.status;
+                + this.item.getClass() + "\n" + this.status + "\n" + this.group;
     }
 
     public void updateStatus() {
