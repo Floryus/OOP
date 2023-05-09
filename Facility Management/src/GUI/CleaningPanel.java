@@ -1,13 +1,9 @@
 package GUI;
 
 import java.util.ArrayList;
-
 import javax.swing.JList;
-
 import classes.GroupEnum;
-
 import javax.swing.*;
-
 import ticketSystem.Ticket;
 
 public class CleaningPanel extends JPanel {
@@ -21,26 +17,8 @@ public class CleaningPanel extends JPanel {
     }
 
     public void updateContent(ArrayList<Ticket> tickets) {
-        // Filter tickets by group
-        ArrayList<Ticket> cleaningTickets = new ArrayList<Ticket>();
-        for (Ticket ticket : tickets) {
-            if (ticket.getGroup() == GroupEnum.CLEANING) {
-                cleaningTickets.add(ticket);
-            }
-        }
-        String[][] data = new String[cleaningTickets.size()][3];
-
-        int i = 0;
-        for (Ticket ticket : cleaningTickets) {
-            data[i][0] = ticket.getTitle();
-            data[i][1] = ticket.getDescription();
-            data[i][2] = ticket.getPrio().toString();
-            i++;
-        }
-
-        String[] columnNames = { "Titel", "description", "Priority" };
-        // Initializing the JTable
-        JTable j = new JTable(data, columnNames);
+        TicketManager tm = new TicketManager(GroupEnum.CLEANING, tickets);
+        JTable j = new JTable(tm.getData(), tm.getColumnNames());
         removeAll();
         add(j);
     }

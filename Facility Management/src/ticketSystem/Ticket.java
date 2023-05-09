@@ -6,7 +6,7 @@ import java.util.Date;
 import classes.GroupEnum;
 import classes.maintainable;
 
-public class Ticket {
+public class Ticket implements Comparable<Ticket> {
     // Basic info
     String title;
     String description;
@@ -57,10 +57,8 @@ public class Ticket {
         return prio;
     }
 
-    public String getEverything() {
-        return "Title: \t\t" + this.title + "\nDesc: \t\t" + this.description + "\nC-Date: \t" + this.creationDate
-                + "\nPrio: \t\t" + this.prio + "\nClass: \t\t"
-                + this.item.getClass() + "\nStatus: \t" + this.status + "\nGroup: \t\t" + this.group;
+    public int compareTo(Ticket other) {
+        return this.prio.compareTo(other.prio);
     }
 
     public void updateStatus() {
