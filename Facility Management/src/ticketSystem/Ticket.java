@@ -50,8 +50,9 @@ public class Ticket {
     }
 
     public String getEverything() {
-        return this.title + "\n" + this.description + "\n" + this.creationDate + "\n" + this.prio + "\n"
-                + this.item.getClass() + "\n" + this.status + "\n" + this.group;
+        return "Title: \t\t" + this.title + "\nDesc: \t\t" + this.description + "\nC-Date: \t" + this.creationDate
+                + "\nPrio: \t\t" + this.prio + "\nClass: \t\t"
+                + this.item.getClass() + "\nStatus: \t" + this.status + "\nGroup: \t\t" + this.group;
     }
 
     public void updateStatus() {

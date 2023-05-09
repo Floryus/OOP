@@ -1,44 +1,27 @@
-import javax.swing.SwingUtilities;
+
+import java.util.ArrayList;
 
 import GUI.TicketForm;
-import classes.Building;
-import classes.Equipment;
-import classes.GroupEnum;
-import classes.Room;
-import ticketSystem.PriorityEnum;
 import ticketSystem.Ticket;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        /*
-         * System.out.println("I create a ticket for a room!");
-         * 
-         * Building rc = new Building("Ritz Carlton");
-         * Room lobbyRoom = new Room(rc, 2);
-         * System.out.println(lobbyRoom.getName());
-         * 
-         * Ticket cleaningProblem = new Ticket("Dreckiger Teppich",
-         * "Jemand hat Orangensaft verschüttet. ",
-         * PriorityEnum.HIGH, lobbyRoom, GroupEnum.CLEANING);
-         * 
-         * System.out.println(cleaningProblem.getEverything());
-         * cleaningProblem.updateStatus();
-         * System.out.println("\n");
-         * System.out.println(cleaningProblem.getEverything());
-         * 
-         * Equipment tv = new Equipment("Fernseher 13");
-         * Ticket tvProblemTicket = new Ticket("Screen kaputt", "Loch drin",
-         * PriorityEnum.URGENT, tv, GroupEnum.IT);
-         * 
-         * System.out.println(tvProblemTicket.getEverything());
-         * tvProblemTicket.updateStatus();
-         * System.out.println("\n");
-         * System.out.println(tvProblemTicket.getEverything());
-         * 
-         */
 
-        TicketForm gui = new TicketForm();
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        TicketForm gui = new TicketForm(tickets);
         gui.setVisible(true);
+
+        System.out.println(tickets.toString());
+
+        int timeout = 5000; // Timeout in Millisekunden (hier 5 Sekunden)
+
+        try {
+            Thread.sleep(timeout);
+            System.out.println("Timeout ist abgelaufen");
+            System.out.println(tickets.toString());
+        } catch (InterruptedException e) {
+            System.out.println("Der Timeout wurde unterbrochen");
+        }
 
     }
 }
