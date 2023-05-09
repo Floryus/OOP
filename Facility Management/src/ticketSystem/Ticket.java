@@ -49,6 +49,14 @@ public class Ticket {
         return description;
     }
 
+    public GroupEnum getGroup() {
+        return group;
+    }
+
+    public PriorityEnum getPrio() {
+        return prio;
+    }
+
     public String getEverything() {
         return "Title: \t\t" + this.title + "\nDesc: \t\t" + this.description + "\nC-Date: \t" + this.creationDate
                 + "\nPrio: \t\t" + this.prio + "\nClass: \t\t"

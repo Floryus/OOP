@@ -30,7 +30,7 @@ public class TicketForm extends JFrame {
 
     private void initComponents() {
         setTitle("Ticket erstellen");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         titleField = new JTextField(20);
         descriptionArea = new JTextArea(5, 20);
@@ -70,10 +70,8 @@ public class TicketForm extends JFrame {
                 Ticket ticket = new Ticket(title, description, priority, item, group);
                 tickets.add(ticket);
 
-                System.out.println(ticket.getEverything());
+                dispose();
 
-                titleField.setText("");
-                descriptionArea.setText("");
             }
         });
     }
