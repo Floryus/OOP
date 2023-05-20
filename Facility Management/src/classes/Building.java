@@ -12,12 +12,14 @@ public class Building {
         this.name = name;
         this.maxLevels = maxLevels;
         this.address = address;
+        Portfolio.addBuilding(this);
     }
 
-    public void createLevel() throws InvalidException {
+    public Level createLevel(int maxRooms) throws InvalidException {
         if (levels.size() < maxLevels) {
-            Level lvl = new Level(levels.size(), this);
+            Level lvl = new Level(levels.size(), this, maxRooms);
             levels.add(lvl);
+            return lvl;
         } else {
             throw new InvalidException("Maximum levels reached!");
         }
@@ -28,6 +30,18 @@ public class Building {
             throw new InvalidException("Ungültiger Level-Index: " + number);
         }
         return levels.get(number);
+    }
+
+    public ArrayList<Level> getLevels() {
+        return levels;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
 }

@@ -2,7 +2,9 @@ package GUI;
 
 import java.util.ArrayList;
 import javax.swing.JList;
-import classes.GroupEnum;
+
+import enums.GroupEnum;
+
 import javax.swing.*;
 import ticketSystem.Ticket;
 

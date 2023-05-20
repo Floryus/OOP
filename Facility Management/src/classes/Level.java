@@ -2,6 +2,8 @@ package classes;
 
 import java.util.ArrayList;
 
+import enums.RoomTypesEnum;
+
 public class Level {
     int levelNumber;
     int maxRooms;
@@ -9,9 +11,10 @@ public class Level {
     ArrayList<Room> rooms = new ArrayList<Room>();
     private int currRoomNumber = 0;
 
-    Level(int levelNumber, Building building) {
+    Level(int levelNumber, Building building, int maxRooms) {
         this.levelNumber = levelNumber;
         this.building = building;
+        this.maxRooms = maxRooms;
     }
 
     public Room createRoom(RoomTypesEnum rte) throws InvalidException {
@@ -48,6 +51,14 @@ public class Level {
     public String createRoomNumber() {
         currRoomNumber++;
         return String.valueOf(this.levelNumber) + "." + String.valueOf(currRoomNumber - 1);
+    }
+
+    public ArrayList<Room> getRooms() {
+        return rooms;
+    }
+
+    public int getLevelNumber() {
+        return levelNumber;
     }
 
 }

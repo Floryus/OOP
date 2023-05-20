@@ -2,13 +2,25 @@
 import java.util.ArrayList;
 
 import GUI.FullScreenMain;
-import classes.GroupEnum;
+import classes.Building;
+import classes.Level;
+import classes.Portfolio;
 import classes.Room;
-import ticketSystem.PriorityEnum;
+import enums.GroupEnum;
+import enums.PriorityEnum;
 import ticketSystem.Ticket;
 
 public class App {
     public static void main(String[] args) throws Exception {
+
+        Portfolio port = new Portfolio();
+        Building ber = new Building("ber", 3, "bla");
+        Level bl1 = ber.createLevel(10);
+        Room bl1r1 = bl1.createRoom(null);
+
+        Building wdf = new Building("wdf", 3, "bla");
+
+        Building seo = new Building("seo", 3, "bla");
 
         ArrayList<Ticket> tickets = new ArrayList<Ticket>();
         tickets.add(0, new Ticket("Titel 1", "Das hier ist der Inhalt", PriorityEnum.HIGH, null, GroupEnum.CLEANING));

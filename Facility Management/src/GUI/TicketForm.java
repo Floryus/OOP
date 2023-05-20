@@ -3,11 +3,11 @@ package GUI;
 import javax.swing.*;
 
 import classes.Building;
-import classes.GroupEnum;
 import classes.Level;
 import classes.Room;
-import classes.RoomTypesEnum;
-import ticketSystem.PriorityEnum;
+import enums.GroupEnum;
+import enums.PriorityEnum;
+import enums.RoomTypesEnum;
 import ticketSystem.Ticket;
 import java.util.ArrayList;
 
@@ -68,11 +68,10 @@ public class TicketForm extends JFrame {
                 Building b = new Building("Ber03", 3, "Hauptstraße 18, 10369");
                 Room item;
                 try {
-                    b.createLevel();
-                    Level l = b.getLevelByLevelNumber(0);
-                    item = l.createRoom(RoomTypesEnum.STUDY);
-                } catch (Exception ex) {
-                    System.out.println(ex);
+                    b.createLevel(3);
+                    Level lvl = b.getLevelByLevelNumber(0);
+                    item = lvl.createRoom(RoomTypesEnum.STUDY);
+                } catch (Exception exception) {
                     return;
                 }
 

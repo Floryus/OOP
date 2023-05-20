@@ -3,8 +3,10 @@ package ticketSystem;
 import java.util.Arrays;
 import java.util.Date;
 
-import classes.GroupEnum;
 import classes.maintainable;
+import enums.GroupEnum;
+import enums.PriorityEnum;
+import enums.StatusEnum;
 
 public class Ticket implements Comparable<Ticket> {
     // Basic info
