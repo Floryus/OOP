@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import GUI.FullScreenMain;
 import classes.GroupEnum;
+import classes.Room;
 import ticketSystem.PriorityEnum;
 import ticketSystem.Ticket;
 
@@ -22,6 +23,5 @@ public class App {
         tickets.add(0, new Ticket("Titel 9", "Das hier ist der Inhalt", PriorityEnum.LOW, null, GroupEnum.CLEANING));
         FullScreenMain gui = new FullScreenMain(tickets);
         gui.setVisible(true);
-
     }
 }

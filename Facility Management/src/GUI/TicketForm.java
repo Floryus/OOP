@@ -4,7 +4,9 @@ import javax.swing.*;
 
 import classes.Building;
 import classes.GroupEnum;
+import classes.Level;
 import classes.Room;
+import classes.RoomTypesEnum;
 import ticketSystem.PriorityEnum;
 import ticketSystem.Ticket;
 import java.util.ArrayList;
@@ -63,8 +65,16 @@ public class TicketForm extends JFrame {
                 PriorityEnum priority = (PriorityEnum) priorityComboBox.getSelectedItem();
                 GroupEnum group = (GroupEnum) groupComboBox.getSelectedItem();
 
-                Building b = new Building("Ber03");
-                Room item = new Room(b, 0);
+                Building b = new Building("Ber03", 3, "Hauptstraße 18, 10369");
+                Room item;
+                try {
+                    b.createLevel();
+                    Level l = b.getLevelByLevelNumber(0);
+                    item = l.createRoom(RoomTypesEnum.STUDY);
+                } catch (Exception ex) {
+                    System.out.println(ex);
+                    return;
+                }
 
                 // Create ticket object
                 Ticket ticket = new Ticket(title, description, priority, item, group);

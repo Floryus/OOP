@@ -3,6 +3,7 @@ package GUI;
 import java.util.ArrayList;
 
 import classes.GroupEnum;
+import classes.cleanable;
 import ticketSystem.Ticket;
 
 public class TicketManager {

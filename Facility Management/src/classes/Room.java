@@ -1,14 +1,14 @@
 package classes;
 
-public class Room extends maintainable {
+public class Room extends maintainable implements cleanable {
     Building building;
-    int level;
+    Level level;
     private String name;
 
-    public Room(Building building, int level) {
+    public Room(Building building, Level level) {
         this.building = building;
         this.level = level;
-        name = this.building.createRoomNumber(level);
+        name = this.level.createRoomNumber();
     }
 
     public String getName() {
