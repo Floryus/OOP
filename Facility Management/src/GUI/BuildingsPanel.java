@@ -19,6 +19,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class BuildingsPanel extends JPanel {
 
@@ -59,18 +62,24 @@ public class BuildingsPanel extends JPanel {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Building Portfolio");
 
         // Füge Gebäude hinzu
-        for (Building building : Portfolio.getBuildings()) {
+        ArrayList<Building> buildings = Portfolio.getBuildings();
+        Collections.sort(buildings);
+        for (Building building : buildings) {
             BuildingTreeNode buildingNode = new BuildingTreeNode(building);
             DefaultMutableTreeNode buildingTreeNode = new DefaultMutableTreeNode(buildingNode);
             root.add(buildingTreeNode);
 
-            // Füge Ebenen hinzu
-            for (Level level : building.getLevels()) {
+            // Füge Etage hinzu
+            ArrayList<Level> levels = building.getLevels();
+            Collections.sort(levels);
+            for (Level level : levels) {
                 DefaultMutableTreeNode levelNode = new DefaultMutableTreeNode("Level " + level.getLevelNumber());
                 buildingTreeNode.add(levelNode);
 
                 // Füge Räume hinzu
-                for (Room room : level.getRooms()) {
+                ArrayList<Room> rooms = level.getRooms();
+                Collections.sort(rooms);
+                for (Room room : rooms) {
                     DefaultMutableTreeNode roomNode = new DefaultMutableTreeNode(room.getName());
                     levelNode.add(roomNode);
 

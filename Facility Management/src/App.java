@@ -13,7 +13,7 @@ import ticketSystem.Ticket;
 public class App {
     public static void main(String[] args) throws Exception {
 
-        Portfolio port = new Portfolio();
+        Portfolio port = new Portfolio("Test portfolio");
         Building ber = new Building("ber", 3, "bla");
         Level bl1 = ber.createLevel(10);
         Room bl1r1 = bl1.createRoom(null);
