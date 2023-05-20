@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import enums.RoomTypesEnum;
 
-public class Level {
+public class Level implements Comparable<Level> {
     int levelNumber;
     int maxRooms;
     Building building;
@@ -59,6 +59,20 @@ public class Level {
 
     public int getLevelNumber() {
         return levelNumber;
+    }
+
+    public String toString() {
+        return "This level is number " + this.levelNumber + " of " + this.currRoomNumber + " in "
+                + this.building.toString();
+    }
+
+    @Override
+    public int compareTo(Level other) {
+        int result = this.building.getName().compareTo(other.building.getName());
+        if (result == 0) {
+            return Integer.compare(this.levelNumber, other.levelNumber);
+        }
+        return result;
     }
 
 }

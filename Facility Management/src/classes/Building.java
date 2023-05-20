@@ -2,7 +2,7 @@ package classes;
 
 import java.util.ArrayList;
 
-public class Building {
+public class Building implements Comparable<Building> {
     String name;
     private int maxLevels;
     ArrayList<Level> levels = new ArrayList<Level>();
@@ -42,6 +42,15 @@ public class Building {
 
     public String getAddress() {
         return address;
+    }
+
+    public String toString() {
+        return "Building " + this.name + " with " + this.levels.size() + " levels.";
+    }
+
+    @Override
+    public int compareTo(Building other) {
+        return this.name.compareTo(other.name);
     }
 
 }

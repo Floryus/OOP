@@ -59,8 +59,13 @@ public class Ticket implements Comparable<Ticket> {
         return prio;
     }
 
+    @Override
     public int compareTo(Ticket other) {
         return this.prio.compareTo(other.prio);
+    }
+
+    public String toString() {
+        return this.title + " is for " + this.group + " with prio " + this.prio;
     }
 
     public void updateStatus() {
