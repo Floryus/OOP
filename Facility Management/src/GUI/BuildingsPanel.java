@@ -20,7 +20,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class BuildingsPanel extends JPanel {
@@ -50,9 +49,15 @@ public class BuildingsPanel extends JPanel {
             if (selectedPath != null) {
                 // Erhalten des ausgewählten Knotens
                 DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) selectedPath.getLastPathComponent();
+                if (selectedNode.getUserObject() instanceof AddTreeNode) {
+                    System.out.println("New selected");
 
-                // Anzeigen des Popups basierend auf dem ausgewählten Knoten
-                showPopup(selectedNode);
+                    // TODO: Logic to add rooms, levels and buildings
+                } else {
+                    // Anzeigen des Popups basierend auf dem ausgewählten Knoten
+                    showPopup(selectedNode);
+                }
+
             }
         });
     }
@@ -73,20 +78,36 @@ public class BuildingsPanel extends JPanel {
             ArrayList<Level> levels = building.getLevels();
             Collections.sort(levels);
             for (Level level : levels) {
-                DefaultMutableTreeNode levelNode = new DefaultMutableTreeNode("Level " + level.getLevelNumber());
-                buildingTreeNode.add(levelNode);
+                LevelTreeNode levelNode = new LevelTreeNode(level);
+                DefaultMutableTreeNode levelTreeNode = new DefaultMutableTreeNode(levelNode);
+                buildingTreeNode.add(levelTreeNode);
 
                 // Füge Räume hinzu
                 ArrayList<Room> rooms = level.getRooms();
                 Collections.sort(rooms);
                 for (Room room : rooms) {
-                    DefaultMutableTreeNode roomNode = new DefaultMutableTreeNode(room.getName());
-                    levelNode.add(roomNode);
+                    RoomTreeNode roomNode = new RoomTreeNode(room);
+                    DefaultMutableTreeNode roomTreeNode = new DefaultMutableTreeNode(roomNode);
+                    levelTreeNode.add(roomTreeNode);
 
                     // TODO: Add Equipment loop
                 }
+                if (level.getRooms().size() < level.getMaxRooms()) {
+                    AddTreeNode addNode = new AddTreeNode();
+                    DefaultMutableTreeNode addTreeNode = new DefaultMutableTreeNode(addNode);
+                    levelTreeNode.add(addTreeNode);
+                }
+
+            }
+            if (building.getLevels().size() < building.getMaxLevels()) {
+                AddTreeNode addNode = new AddTreeNode();
+                DefaultMutableTreeNode addTreeNode = new DefaultMutableTreeNode(addNode);
+                buildingTreeNode.add(addTreeNode);
             }
         }
+        AddTreeNode addNode = new AddTreeNode();
+        DefaultMutableTreeNode addTreeNode = new DefaultMutableTreeNode(addNode);
+        root.add(addTreeNode);
 
         // Erstelle das TreeModel mit dem Wurzelknoten
         treeModel = new DefaultTreeModel(root);
@@ -98,25 +119,39 @@ public class BuildingsPanel extends JPanel {
         JPopupMenu popupMenu = new JPopupMenu();
 
         // Hinzufügen von Menüelementen
-        JMenuItem menuItem = new JMenuItem("Info");
-        menuItem.addActionListener(new ActionListener() {
+        JMenuItem menuItemInfo = new JMenuItem("Info");
+        JMenuItem menuItemEdit = new JMenuItem("Edit");
+
+        menuItemInfo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aktion ausführen, wenn "Info" ausgewählt wird
-                // Hier kannst du entsprechende Logik für das ausgewählte Element ausführen
-                System.out.println("Info selected for: " + node.getUserObject());
+                System.out.println("Info selected for: " + node.getUserObject() + node.getUserObject().getClass());
 
                 // Überprüfen, ob der Knoten Building Klasse verwendet
                 if (node.getUserObject() instanceof BuildingTreeNode) {
                     // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     BuildingTreeNode buildingTreeNode = (BuildingTreeNode) node.getUserObject();
                     Building building = buildingTreeNode.getBuilding();
-                    System.out.println("Building selected: " + building.getAddress());
+                    System.out.println("Building selected: " + building);
+                } else if (node.getUserObject() instanceof LevelTreeNode) {
+                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
+                    LevelTreeNode levelTreeNode = (LevelTreeNode) node.getUserObject();
+                    Level level = levelTreeNode.getLevel();
+                    System.out.println("Level selected: " + level);
+                } else if (node.getUserObject() instanceof RoomTreeNode) {
+                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
+                    RoomTreeNode roomTreeNode = (RoomTreeNode) node.getUserObject();
+                    Room room = roomTreeNode.getRoom();
+                    System.out.println("Room selected: " + room);
                 }
 
             }
         });
-        popupMenu.add(menuItem);
+
+        // Items hinzufügen
+        popupMenu.add(menuItemInfo);
+        popupMenu.add(menuItemEdit);
 
         // Anzeigen des Popups an der Position des ausgewählten Elements
         Rectangle bounds = tree.getPathBounds(tree.getSelectionPath());
@@ -139,4 +174,47 @@ public class BuildingsPanel extends JPanel {
             return building.getName();
         }
     }
+
+    private class LevelTreeNode {
+        private Level level;
+
+        public LevelTreeNode(Level level) {
+            this.level = level;
+        }
+
+        public Level getLevel() {
+            return level;
+        }
+
+        @Override
+        public String toString() {
+            return "Level " + String.valueOf(level.getLevelNumber());
+        }
+    }
+
+    private class RoomTreeNode {
+        private Room room;
+
+        public RoomTreeNode(Room room) {
+            this.room = room;
+        }
+
+        public Room getRoom() {
+            return room;
+        }
+
+        @Override
+        public String toString() {
+            return "Room " + String.valueOf(room.getName());
+        }
+    }
+
+    private class AddTreeNode {
+
+        @Override
+        public String toString() {
+            return "+ NEW";
+        }
+    }
+
 }

@@ -44,6 +44,10 @@ public class Building implements Comparable<Building> {
         return address;
     }
 
+    public int getMaxLevels() {
+        return maxLevels;
+    }
+
     public String toString() {
         return "Building " + this.name + " with " + this.levels.size() + " levels.";
     }

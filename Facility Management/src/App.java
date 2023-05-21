@@ -19,7 +19,7 @@ public class App {
         Room bl1r1 = bl1.createRoom(null);
 
         Building wdf = new Building("wdf", 3, "bla");
-        Level wl1 = wdf.createLevel(10);
+        Level wl1 = wdf.createLevel(2);
         Room wl1r1 = wl1.createRoom(null);
         Room wl1r2 = wl1.createRoom(null);
 

@@ -57,6 +57,10 @@ public class Level implements Comparable<Level> {
         return rooms;
     }
 
+    public int getMaxRooms() {
+        return maxRooms;
+    }
+
     public int getLevelNumber() {
         return levelNumber;
     }
