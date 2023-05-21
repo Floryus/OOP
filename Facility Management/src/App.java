@@ -48,7 +48,7 @@ public class App {
         tickets.add(0, new Ticket("Titel 7", "Das hier ist der Inhalt", PriorityEnum.HIGH, null, GroupEnum.IT));
         tickets.add(0, new Ticket("Titel 8", "Das hier ist der Inhalt", PriorityEnum.URGENT, null, GroupEnum.FACILITY));
         tickets.add(0, new Ticket("Titel 9", "Das hier ist der Inhalt", PriorityEnum.LOW, null, GroupEnum.CLEANING));
-        FullScreenMain gui = new FullScreenMain(tickets);
+        FullScreenMain gui = new FullScreenMain(tickets, port);
         gui.setVisible(true);
     }
 }

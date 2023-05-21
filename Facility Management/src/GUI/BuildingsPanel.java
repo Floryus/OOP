@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 import classes.Building;
@@ -26,8 +27,11 @@ public class BuildingsPanel extends JPanel {
 
     private JTree tree;
     private DefaultTreeModel treeModel;
+    private Portfolio portfolio;
 
-    public BuildingsPanel() {
+    public BuildingsPanel(Portfolio portfolio) {
+        this.portfolio = portfolio;
+
         setLayout(new BorderLayout());
         add(new JLabel("Buildings panel"), BorderLayout.CENTER);
         initComponents();
@@ -49,10 +53,27 @@ public class BuildingsPanel extends JPanel {
             if (selectedPath != null) {
                 // Erhalten des ausgewählten Knotens
                 DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) selectedPath.getLastPathComponent();
-                if (selectedNode.getUserObject() instanceof AddTreeNode) {
-                    System.out.println("New selected");
 
-                    // TODO: Logic to add rooms, levels and buildings
+                // Logik falls "New"-Knoten ausgewählt ist
+                if (selectedNode.getUserObject() instanceof AddTreeNode) {
+                    System.out.println("New selected" + selectedNode.getUserObject().toString());
+
+                    AddTreeNode roomTreeNode = (AddTreeNode) selectedNode.getUserObject();
+                    if (roomTreeNode.portfolio != null) {
+                        // createBuilding - name, maxLevels, address
+                        AddBuildingPopup addBuildingPopup = new AddBuildingPopup(this, roomTreeNode.portfolio);
+                        addBuildingPopup.setVisible(true);
+                    } else if (roomTreeNode.building != null) {
+                        // createLevel - maxRooms
+                        AddLevelPopup addLevelPopup = new AddLevelPopup(this, roomTreeNode.building);
+                        addLevelPopup.setVisible(true);
+                    } else if (roomTreeNode.level != null) {
+                        // createRoom - Room Types Enum
+                        AddRoomPopup addRoomPopup = new AddRoomPopup(this, roomTreeNode.level);
+                        addRoomPopup.setVisible(true);
+                    } else {
+                        System.out.println("Kein Objekt im addTreeSelectionListener");
+                    }
 
                 } else {
                     // Anzeigen des Popups basierend auf dem ausgewählten Knoten
@@ -94,25 +115,29 @@ public class BuildingsPanel extends JPanel {
                     // TODO: Add Equipment loop
                 }
                 if (level.getRooms().size() < level.getMaxRooms()) {
-                    AddTreeNode addNode = new AddTreeNode();
+                    AddTreeNode addNode = new AddTreeNode(level);
                     DefaultMutableTreeNode addTreeNode = new DefaultMutableTreeNode(addNode);
                     levelTreeNode.add(addTreeNode);
                 }
 
             }
             if (building.getLevels().size() < building.getMaxLevels()) {
-                AddTreeNode addNode = new AddTreeNode();
+                AddTreeNode addNode = new AddTreeNode(building);
                 DefaultMutableTreeNode addTreeNode = new DefaultMutableTreeNode(addNode);
                 buildingTreeNode.add(addTreeNode);
             }
         }
-        AddTreeNode addNode = new AddTreeNode();
+        AddTreeNode addNode = new AddTreeNode(portfolio);
         DefaultMutableTreeNode addTreeNode = new DefaultMutableTreeNode(addNode);
         root.add(addTreeNode);
 
         // Erstelle das TreeModel mit dem Wurzelknoten
         treeModel = new DefaultTreeModel(root);
         tree.setModel(treeModel);
+    }
+
+    public void reloadTree() {
+        buildTree();
     }
 
     private void showPopup(DefaultMutableTreeNode node) {
@@ -211,6 +236,25 @@ public class BuildingsPanel extends JPanel {
     }
 
     private class AddTreeNode {
+
+        private Portfolio portfolio;
+        private Building building;
+        private Level level;
+
+        // For create Building
+        public AddTreeNode(Portfolio portfolio) {
+            this.portfolio = portfolio;
+        }
+
+        // For create level
+        public AddTreeNode(Building building) {
+            this.building = building;
+        }
+
+        // For create room
+        public AddTreeNode(Level level) {
+            this.level = level;
+        }
 
         @Override
         public String toString() {

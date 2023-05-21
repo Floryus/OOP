@@ -17,35 +17,30 @@ public class Level implements Comparable<Level> {
         this.maxRooms = maxRooms;
     }
 
-    public Room createRoom(RoomTypesEnum rte) throws InvalidException {
+    public Room createRoom(RoomTypesEnum rte) {
 
-        if (rooms.size() < maxRooms) {
-            /*
-             * TODO: add rooms with Classes who inherit from Room master class
-             * switch (rte) {
-             * case FOOD:
-             * break;
-             * case CLOSETS:
-             * break;
-             * case FLOOR:
-             * break;
-             * case LABS:
-             * break;
-             * case OTHER:
-             * break;
-             * case STUDY:
-             * break;
-             * default:
-             * Room r = new Room(this.building, this);
-             * }
-             */
-            Room r = new Room(this.building, this);
-            rooms.add(r);
-            return r;
-
-        } else {
-            throw new InvalidException("Maximum rooms reached!");
-        }
+        /*
+         * TODO: add rooms with Classes who inherit from Room master class
+         * switch (rte) {
+         * case FOOD:
+         * break;
+         * case CLOSETS:
+         * break;
+         * case FLOOR:
+         * break;
+         * case LABS:
+         * break;
+         * case OTHER:
+         * break;
+         * case STUDY:
+         * break;
+         * default:
+         * Room r = new Room(this.building, this);
+         * }
+         */
+        Room r = new Room(this.building, this);
+        rooms.add(r);
+        return r;
     }
 
     public String createRoomNumber() {

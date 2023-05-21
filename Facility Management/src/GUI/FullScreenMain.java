@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import classes.Portfolio;
 import ticketSystem.Ticket;
 
 import java.awt.*;
@@ -13,9 +14,11 @@ import java.util.ArrayList;
 public class FullScreenMain extends JFrame {
 
     private ArrayList<Ticket> tickets;
+    private Portfolio portfolio;
 
-    public FullScreenMain(ArrayList<Ticket> tickets) {
+    public FullScreenMain(ArrayList<Ticket> tickets, Portfolio portfolio) {
         this.tickets = tickets;
+        this.portfolio = portfolio;
         initComponents();
     }
 
@@ -28,7 +31,7 @@ public class FullScreenMain extends JFrame {
         buttonPanel.add(createTicketButton);
 
         // Panels
-        BuildingsPanel bp = new BuildingsPanel();
+        BuildingsPanel bp = new BuildingsPanel(portfolio);
         CleaningPanel cp = new CleaningPanel(tickets);
         ITPanel ip = new ITPanel(tickets);
         FacilityPanel fp = new FacilityPanel(tickets);

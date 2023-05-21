@@ -14,14 +14,10 @@ public class Building implements Comparable<Building> {
         this.address = address;
     }
 
-    public Level createLevel(int maxRooms) throws InvalidException {
-        if (levels.size() < maxLevels) {
-            Level lvl = new Level(levels.size(), this, maxRooms);
-            levels.add(lvl);
-            return lvl;
-        } else {
-            throw new InvalidException("Maximum levels reached!");
-        }
+    public Level createLevel(int maxRooms) {
+        Level lvl = new Level(levels.size(), this, maxRooms);
+        levels.add(lvl);
+        return lvl;
     }
 
     public Level getLevelByLevelNumber(int number) throws InvalidException {
@@ -53,7 +49,7 @@ public class Building implements Comparable<Building> {
 
     @Override
     public int compareTo(Building other) {
-        return this.name.compareTo(other.name);
+        return this.name.toLowerCase().compareTo(other.name.toLowerCase());
     }
 
 }
