@@ -2,7 +2,6 @@ package GUI;
 
 import java.util.ArrayList;
 
-import classes.cleanable;
 import enums.GroupEnum;
 import ticketSystem.Ticket;
 

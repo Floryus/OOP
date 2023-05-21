@@ -1,6 +1,6 @@
 package classes;
 
-public class Room extends maintainable implements cleanable, Comparable<Room> {
+public class Room extends maintainable implements Comparable<Room> {
     Building building;
     Level level;
     private String name;
