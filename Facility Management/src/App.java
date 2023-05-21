@@ -14,11 +14,11 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         Portfolio port = new Portfolio("Test portfolio");
-        Building ber = new Building("ber", 3, "bla");
+        Building ber = port.createBuilding("ber", 3, "bla");
         Level bl1 = ber.createLevel(10);
         Room bl1r1 = bl1.createRoom(null);
 
-        Building wdf = new Building("wdf", 3, "bla");
+        Building wdf = port.createBuilding("wdf", 3, "bla");
         Level wl1 = wdf.createLevel(2);
         Room wl1r1 = wl1.createRoom(null);
         Room wl1r2 = wl1.createRoom(null);
@@ -27,7 +27,7 @@ public class App {
         Room wl2r1 = wl2.createRoom(null);
         Room wl2r2 = wl2.createRoom(null);
 
-        Building seo = new Building("seo", 3, "bla");
+        Building seo = port.createBuilding("seo", 3, "bla");
         Level sl1 = seo.createLevel(10);
         Room sl1r1 = sl1.createRoom(null);
         Room sl1r2 = sl1.createRoom(null);

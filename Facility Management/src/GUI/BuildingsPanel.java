@@ -53,6 +53,7 @@ public class BuildingsPanel extends JPanel {
                     System.out.println("New selected");
 
                     // TODO: Logic to add rooms, levels and buildings
+
                 } else {
                     // Anzeigen des Popups basierend auf dem ausgewählten Knoten
                     showPopup(selectedNode);

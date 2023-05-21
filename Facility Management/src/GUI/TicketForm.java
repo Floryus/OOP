@@ -65,19 +65,23 @@ public class TicketForm extends JFrame {
                 PriorityEnum priority = (PriorityEnum) priorityComboBox.getSelectedItem();
                 GroupEnum group = (GroupEnum) groupComboBox.getSelectedItem();
 
-                Building b = new Building("Ber03", 3, "Hauptstraße 18, 10369");
-                Room item;
-                try {
-                    b.createLevel(3);
-                    Level lvl = b.getLevelByLevelNumber(0);
-                    item = lvl.createRoom(RoomTypesEnum.STUDY);
-                } catch (Exception exception) {
-                    return;
-                }
+                // TODO implement corresponding item feature
 
-                // Create ticket object
-                Ticket ticket = new Ticket(title, description, priority, item, group);
-                tickets.add(ticket);
+                /*
+                 * Building b = port.createBuilding("Ber03", 3, "Hauptstraße 18, 10369");
+                 * Room item;
+                 * try {
+                 * b.createLevel(3);
+                 * Level lvl = b.getLevelByLevelNumber(0);
+                 * item = lvl.createRoom(RoomTypesEnum.STUDY);
+                 * } catch (Exception exception) {
+                 * return;
+                 * }
+                 * 
+                 * // Create ticket object
+                 * Ticket ticket = new Ticket(title, description, priority, item, group);
+                 * tickets.add(ticket);
+                 */
 
                 dispose();
 

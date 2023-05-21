@@ -8,11 +8,10 @@ public class Building implements Comparable<Building> {
     ArrayList<Level> levels = new ArrayList<Level>();
     private String address;
 
-    public Building(String name, int maxLevels, String address) {
+    Building(String name, int maxLevels, String address) {
         this.name = name;
         this.maxLevels = maxLevels;
         this.address = address;
-        Portfolio.addBuilding(this);
     }
 
     public Level createLevel(int maxRooms) throws InvalidException {

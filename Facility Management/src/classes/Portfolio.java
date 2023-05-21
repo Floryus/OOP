@@ -15,7 +15,13 @@ public class Portfolio implements Comparable<Portfolio> {
         return buildings;
     }
 
-    public static void addBuilding(Building building) {
+    public static Building createBuilding(String name, int maxLevels, String address) {
+        Building building = new Building(name, maxLevels, address);
+        addBuilding(building);
+        return building;
+    }
+
+    private static void addBuilding(Building building) {
         buildings.add(building);
     }
 
@@ -30,7 +36,7 @@ public class Portfolio implements Comparable<Portfolio> {
     // Das Portfolio mit den meisten buildings zuerst
     @Override
     public int compareTo(Portfolio other) {
-        if (this.buildings.size() > other.buildings.size()) {
+        if (buildings.size() > other.buildings.size()) {
             return -1;
         } else if (this.buildings.size() > other.buildings.size()) {
             return 1;
