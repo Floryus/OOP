@@ -26,10 +26,6 @@ public class FullScreenMain extends JFrame {
         setTitle("Facility Management Software");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel buttonPanel = new JPanel();
-        JButton createTicketButton = new JButton("Ticket erstellen");
-        buttonPanel.add(createTicketButton);
-
         // Panels
         BuildingsPanel bp = new BuildingsPanel(portfolio);
         CleaningPanel cp = new CleaningPanel(tickets);
@@ -54,16 +50,8 @@ public class FullScreenMain extends JFrame {
 
         setLayout(new BorderLayout());
         add(tabbedPane, BorderLayout.CENTER);
-        add(buttonPanel, BorderLayout.SOUTH);
 
         pack();
 
-        createTicketButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TicketForm ticketForm = new TicketForm(tickets);
-                ticketForm.setVisible(true);
-            }
-        });
     }
 }
