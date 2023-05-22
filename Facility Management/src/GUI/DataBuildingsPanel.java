@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import classes.Building;
+import classes.GlobalData;
 
 public class DataBuildingsPanel extends JPanel {
 
@@ -36,7 +37,7 @@ public class DataBuildingsPanel extends JPanel {
         buttonTicket.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TicketForm ticketForm = new TicketForm(tickets);
+                TicketForm ticketForm = new TicketForm(GlobalData.getTickets());
                 ticketForm.setVisible(true);
             }
         });

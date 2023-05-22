@@ -10,7 +10,7 @@ import javax.swing.tree.TreePath;
 
 import classes.Building;
 import classes.Level;
-import classes.Portfolio;
+import classes.GlobalData;
 import classes.Room;
 
 import javax.swing.*;
@@ -27,10 +27,8 @@ public class BuildingsPanel extends JPanel {
     private JTree tree;
     private DataBuildingsPanel dataPanel;
     private DefaultTreeModel treeModel;
-    private Portfolio portfolio;
 
-    public BuildingsPanel(Portfolio portfolio) {
-        this.portfolio = portfolio;
+    public BuildingsPanel() {
 
         setLayout(new BorderLayout());
         add(new JLabel("Buildings panel"), BorderLayout.CENTER);
@@ -60,11 +58,7 @@ public class BuildingsPanel extends JPanel {
                     System.out.println("New selected" + selectedNode.getUserObject().toString());
 
                     AddTreeNode roomTreeNode = (AddTreeNode) selectedNode.getUserObject();
-                    if (roomTreeNode.portfolio != null) {
-                        // createBuilding - name, maxLevels, address
-                        AddBuildingPopup addBuildingPopup = new AddBuildingPopup(this, roomTreeNode.portfolio);
-                        addBuildingPopup.setVisible(true);
-                    } else if (roomTreeNode.building != null) {
+                    if (roomTreeNode.building != null) {
                         // createLevel - maxRooms
                         AddLevelPopup addLevelPopup = new AddLevelPopup(this, roomTreeNode.building);
                         addLevelPopup.setVisible(true);
@@ -73,7 +67,9 @@ public class BuildingsPanel extends JPanel {
                         AddRoomPopup addRoomPopup = new AddRoomPopup(this, roomTreeNode.level);
                         addRoomPopup.setVisible(true);
                     } else {
-                        System.out.println("Kein Objekt im addTreeSelectionListener");
+                        // createBuilding - name, maxLevels, address
+                        AddBuildingPopup addBuildingPopup = new AddBuildingPopup(this);
+                        addBuildingPopup.setVisible(true);
                     }
 
                 } else {
@@ -88,10 +84,10 @@ public class BuildingsPanel extends JPanel {
 
     private void buildTree() {
         // Erstelle den Wurzelknoten des Baums
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Building Portfolio");
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("All buildings");
 
         // Füge Gebäude hinzu
-        ArrayList<Building> buildings = Portfolio.getBuildings();
+        ArrayList<Building> buildings = GlobalData.getBuildings();
         Collections.sort(buildings);
         for (Building building : buildings) {
             BuildingTreeNode buildingNode = new BuildingTreeNode(building);
@@ -129,7 +125,7 @@ public class BuildingsPanel extends JPanel {
                 buildingTreeNode.add(addTreeNode);
             }
         }
-        AddTreeNode addNode = new AddTreeNode(portfolio);
+        AddTreeNode addNode = new AddTreeNode();
         DefaultMutableTreeNode addTreeNode = new DefaultMutableTreeNode(addNode);
         root.add(addTreeNode);
 
@@ -245,13 +241,11 @@ public class BuildingsPanel extends JPanel {
 
     private class AddTreeNode {
 
-        private Portfolio portfolio;
         private Building building;
         private Level level;
 
         // For create Building
-        public AddTreeNode(Portfolio portfolio) {
-            this.portfolio = portfolio;
+        public AddTreeNode() {
         }
 
         // For create level

@@ -2,7 +2,7 @@ package GUI;
 
 import javax.swing.*;
 
-import classes.Portfolio;
+import classes.GlobalData;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,12 +13,10 @@ public class AddBuildingPopup extends JFrame {
     private JTextField addressField;
     private JTextField maxLevelsField;
 
-    private Portfolio portfolio;
     private BuildingsPanel bp;
 
-    public AddBuildingPopup(BuildingsPanel bp, Portfolio portfolio) {
+    public AddBuildingPopup(BuildingsPanel bp) {
         this.bp = bp;
-        this.portfolio = portfolio;
         initComponents();
     }
 
@@ -40,8 +38,7 @@ public class AddBuildingPopup extends JFrame {
                 String name = nameField.getText();
                 String address = addressField.getText();
                 int maxLevels = Integer.parseInt(maxLevelsField.getText());
-                portfolio.createBuilding(name, maxLevels, address);
-                System.out.println(portfolio.toString());
+                GlobalData.createBuilding(name, maxLevels, address);
                 bp.reloadTree();
 
                 // Schließe das Popup-Fenster

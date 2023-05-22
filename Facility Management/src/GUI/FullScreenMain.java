@@ -4,21 +4,18 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import classes.Portfolio;
+import classes.GlobalData;
 import ticketSystem.Ticket;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 
 public class FullScreenMain extends JFrame {
 
     private ArrayList<Ticket> tickets;
-    private Portfolio portfolio;
 
-    public FullScreenMain(ArrayList<Ticket> tickets, Portfolio portfolio) {
+    public FullScreenMain(ArrayList<Ticket> tickets) {
         this.tickets = tickets;
-        this.portfolio = portfolio;
         initComponents();
     }
 
@@ -27,7 +24,7 @@ public class FullScreenMain extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panels
-        BuildingsPanel bp = new BuildingsPanel(portfolio);
+        BuildingsPanel bp = new BuildingsPanel();
         CleaningPanel cp = new CleaningPanel(tickets);
         ITPanel ip = new ITPanel(tickets);
         FacilityPanel fp = new FacilityPanel(tickets);
