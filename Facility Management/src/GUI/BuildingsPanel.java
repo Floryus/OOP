@@ -6,7 +6,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
 import classes.Building;
@@ -26,6 +25,7 @@ import java.util.Collections;
 public class BuildingsPanel extends JPanel {
 
     private JTree tree;
+    private DataBuildingsPanel dataPanel;
     private DefaultTreeModel treeModel;
     private Portfolio portfolio;
 
@@ -36,6 +36,7 @@ public class BuildingsPanel extends JPanel {
         add(new JLabel("Buildings panel"), BorderLayout.CENTER);
         initComponents();
         buildTree();
+        buildDataPanel();
     }
 
     private void initComponents() {
@@ -77,6 +78,7 @@ public class BuildingsPanel extends JPanel {
 
                 } else {
                     // Anzeigen des Popups basierend auf dem ausgewählten Knoten
+                    // TODO: exchange Popup with Panel
                     showPopup(selectedNode);
                 }
 
@@ -159,17 +161,17 @@ public class BuildingsPanel extends JPanel {
                     // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     BuildingTreeNode buildingTreeNode = (BuildingTreeNode) node.getUserObject();
                     Building building = buildingTreeNode.getBuilding();
-                    System.out.println("Building selected: " + building);
+                    dataPanel.updateData(building);
                 } else if (node.getUserObject() instanceof LevelTreeNode) {
                     // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     LevelTreeNode levelTreeNode = (LevelTreeNode) node.getUserObject();
                     Level level = levelTreeNode.getLevel();
-                    System.out.println("Level selected: " + level);
+                    dataPanel.updateData(level.toString());
                 } else if (node.getUserObject() instanceof RoomTreeNode) {
                     // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     RoomTreeNode roomTreeNode = (RoomTreeNode) node.getUserObject();
                     Room room = roomTreeNode.getRoom();
-                    System.out.println("Room selected: " + room);
+                    dataPanel.updateData(room.toString());
                 }
 
             }
@@ -182,6 +184,12 @@ public class BuildingsPanel extends JPanel {
         // Anzeigen des Popups an der Position des ausgewählten Elements
         Rectangle bounds = tree.getPathBounds(tree.getSelectionPath());
         popupMenu.show(tree, bounds.x + bounds.width, bounds.y);
+    }
+
+    private void buildDataPanel() {
+        dataPanel = new DataBuildingsPanel();
+
+        add(dataPanel, BorderLayout.EAST);
     }
 
     private class BuildingTreeNode {

@@ -1,5 +1,5 @@
 package enums;
 
 public enum PriorityEnum {
-    URGENT, HIGH, MEDIUM, LOW
+    URGENT, HIGH, MEDIUM, LOW, PERIODIC
 }
