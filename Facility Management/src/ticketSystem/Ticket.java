@@ -1,7 +1,7 @@
 package ticketSystem;
 
 import java.util.Arrays;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 import classes.Todo;
 import classes.Maintainable;
@@ -10,39 +10,26 @@ import enums.PriorityEnum;
 import enums.StatusEnum;
 
 public class Ticket extends Todo implements Comparable<Ticket> {
-    // Basic info
-    String title;
-    String description;
-
-    // Setup info
-    PriorityEnum prio;
-    final Date creationDate;
-
     // Handling info
-    Date dueDate;
+    GregorianCalendar dueDate;
     Maintainable item;
     GroupEnum group;
-
-    // Progress info
-    boolean isArchived;
+    boolean isArchived
     StatusEnum status;
-
-    public Ticket(String title, String description, PriorityEnum prio, Maintainable item, GroupEnum group) {
-
+  
+    public Ticket(String title, String description, PriorityEnum prio,GregorianCalendar dueDate, Maintainable item, GroupEnum group) {
         // Fixed
         this.isArchived = false;
-        creationDate = new Date();
         status = StatusEnum.OPEN;
 
+        super(title, description, prio);
         // Input
-        this.title = title;
-        this.description = description;
         // this.dueDate = dueDate;
-        this.prio = prio;
         this.item = item;
         this.group = group;
-
+        this.dueDate = dueDate;
     }
+
 
     public String getTitle() {
         return title;
