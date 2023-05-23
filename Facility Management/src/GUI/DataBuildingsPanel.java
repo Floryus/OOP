@@ -63,6 +63,9 @@ public class DataBuildingsPanel extends JPanel {
         if (item instanceof Building) {
             System.out.println(" | with " + item);
             setupBuilding((Building) item);
+            repaint();
+            revalidate();
+            repaint();
         }
     }
 
