@@ -316,7 +316,7 @@ public class DataBuildingsPanel extends JPanel {
 
         gbc.gridy++;
         roomTypeComboBox = new JComboBox<>(RoomTypesEnum.values());
-        roomTypeComboBox.setSelectedItem(room.getFlooring());
+        roomTypeComboBox.setSelectedItem(room.getRoomType());
         add(roomTypeComboBox, gbc);
 
         gbc.gridy++;
