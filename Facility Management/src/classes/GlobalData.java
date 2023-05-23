@@ -6,7 +6,7 @@ import enums.GroupEnum;
 import enums.PriorityEnum;
 import ticketSystem.Ticket;
 
-public class GlobalData implements Comparable<GlobalData> {
+public class GlobalData {
 
     String name;
     private static ArrayList<Building> buildings = new ArrayList<>();
@@ -51,18 +51,6 @@ public class GlobalData implements Comparable<GlobalData> {
             message += ticket.getTitle();
         }
         return message;
-    }
-
-    // TODO: Ergibt quasi logisch keinen Sinn, da etwas zu vergleichen
-    @Override
-    public int compareTo(GlobalData other) {
-        if (buildings.size() > other.buildings.size()) {
-            return -1;
-        } else if (this.buildings.size() > other.buildings.size()) {
-            return 1;
-        } else {
-            return 0;
-        }
     }
 
 }

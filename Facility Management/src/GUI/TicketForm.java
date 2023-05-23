@@ -2,21 +2,14 @@ package GUI;
 
 import javax.swing.*;
 
-import classes.Building;
-import classes.Level;
-import classes.Room;
+import classes.GlobalData;
 import enums.GroupEnum;
 import enums.PriorityEnum;
-import enums.RoomTypesEnum;
-import ticketSystem.Ticket;
-import java.util.ArrayList;
 
 import java.awt.*;
 import java.awt.event.*;
 
 public class TicketForm extends JFrame {
-
-    private ArrayList<Ticket> tickets;
 
     private JTextField titleField;
     private JButton printButton;
@@ -24,8 +17,7 @@ public class TicketForm extends JFrame {
     private JComboBox<PriorityEnum> priorityComboBox;
     private JComboBox<GroupEnum> groupComboBox;
 
-    public TicketForm(ArrayList<Ticket> tickets) {
-        this.tickets = tickets;
+    public TicketForm() {
         initComponents();
         titleField.requestFocus();
     }
@@ -65,23 +57,7 @@ public class TicketForm extends JFrame {
                 PriorityEnum priority = (PriorityEnum) priorityComboBox.getSelectedItem();
                 GroupEnum group = (GroupEnum) groupComboBox.getSelectedItem();
 
-                // TODO implement corresponding item feature
-
-                /*
-                 * Building b = port.createBuilding("Ber03", 3, "Hauptstraße 18, 10369");
-                 * Room item;
-                 * try {
-                 * b.createLevel(3);
-                 * Level lvl = b.getLevelByLevelNumber(0);
-                 * item = lvl.createRoom(RoomTypesEnum.STUDY);
-                 * } catch (Exception exception) {
-                 * return;
-                 * }
-                 * 
-                 * // Create ticket object
-                 * Ticket ticket = new Ticket(title, description, priority, item, group);
-                 * tickets.add(ticket);
-                 */
+                GlobalData.addTicket(title, description, priority, null, group);
 
                 dispose();
 

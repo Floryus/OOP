@@ -37,7 +37,7 @@ public class DataBuildingsPanel extends JPanel {
         buttonTicket.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TicketForm ticketForm = new TicketForm(GlobalData.getTickets());
+                TicketForm ticketForm = new TicketForm();
                 ticketForm.setVisible(true);
             }
         });

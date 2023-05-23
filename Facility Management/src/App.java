@@ -13,8 +13,6 @@ import ticketSystem.Ticket;
 public class App {
     public static void main(String[] args) throws Exception {
 
-        // TODO: create context Provider for static lists (todos, buildings);
-
         Building ber = GlobalData.createBuilding("ber", 3, "bla");
         Level bl1 = ber.createLevel(10);
         Room bl1r1 = bl1.createRoom(null);
@@ -38,7 +36,8 @@ public class App {
         Room sl2r1 = sl2.createRoom(null);
         Room sl2r2 = sl2.createRoom(null);
 
-        GlobalData.addTicket("Titel 1", "Das hier ist der Inhalt", PriorityEnum.HIGH, null, GroupEnum.CLEANING);
+        Ticket t = GlobalData.addTicket("Titel 1", "Das hier ist der Inhalt", PriorityEnum.HIGH, null,
+                GroupEnum.CLEANING);
         GlobalData.addTicket("Titel 1", "Das hier ist der Inhalt", PriorityEnum.LOW, null, GroupEnum.IT);
         GlobalData.addTicket("Titel 2", "Das hier ist der Inhalt", PriorityEnum.MEDIUM, null, GroupEnum.FACILITY);
         GlobalData.addTicket("Titel 3", "Das hier ist der Inhalt", PriorityEnum.HIGH, null, GroupEnum.CLEANING);
@@ -50,5 +49,9 @@ public class App {
         GlobalData.addTicket("Titel 9", "Das hier ist der Inhalt", PriorityEnum.LOW, null, GroupEnum.CLEANING);
         FullScreenMain gui = new FullScreenMain(GlobalData.getTickets());
         gui.setVisible(true);
+
+        ArrayList<Ticket> arl = GlobalData.getTickets();
+        int i = arl.indexOf(t);
+        arl.set(i, t);
     }
 }
