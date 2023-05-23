@@ -19,26 +19,7 @@ public class Level extends Maintainable implements Comparable<Level> {
 
     public Room createRoom(RoomTypesEnum rte) {
 
-        /*
-         * TODO: add rooms with Classes who inherit from Room master class
-         * switch (rte) {
-         * case FOOD:
-         * break;
-         * case CLOSETS:
-         * break;
-         * case FLOOR:
-         * break;
-         * case LABS:
-         * break;
-         * case OTHER:
-         * break;
-         * case STUDY:
-         * break;
-         * default:
-         * Room r = new Room(this.building, this);
-         * }
-         */
-        Room r = new Room(this.building, this);
+        Room r = new Room(this.building, this, rte);
         rooms.add(r);
         return r;
     }

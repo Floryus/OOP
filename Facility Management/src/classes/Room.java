@@ -1,7 +1,7 @@
 package classes;
 
-
 import enums.RoomFlooringEnum;
+import enums.RoomTypesEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +15,14 @@ public class Room extends Maintainable implements Comparable<Room> {
     private double width;
     private double height;
     private RoomFlooringEnum flooring;
+    private RoomTypesEnum type;
     private List<Equipment> equipmentList;
     private int seatCount;
 
-    public Room(Building building, Level level) {
+    public Room(Building building, Level level, RoomTypesEnum type) {
         this.building = building;
         this.level = level;
+        this.type = type;
         name = this.level.createRoomNumber();
         equipmentList = new ArrayList<>();
     }
@@ -72,6 +74,14 @@ public class Room extends Maintainable implements Comparable<Room> {
 
     public void setFlooring(RoomFlooringEnum flooring) {
         this.flooring = flooring;
+    }
+
+    public RoomTypesEnum getRoomType() {
+        return type;
+    }
+
+    public void setType(RoomTypesEnum type) {
+        this.type = type;
     }
 
     public List<Equipment> getEquipmentList() {
