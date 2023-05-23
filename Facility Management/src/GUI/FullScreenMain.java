@@ -27,12 +27,14 @@ public class FullScreenMain extends JFrame {
         CleaningPanel cp = new CleaningPanel(tickets);
         ITPanel ip = new ITPanel(tickets);
         FacilityPanel fp = new FacilityPanel(tickets);
+        EmployeeGUI eg = new EmployeeGUI(tickets);
 
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Buildings", bp);
         tabbedPane.addTab("Cleaning", cp);
         tabbedPane.addTab("IT", ip);
         tabbedPane.addTab("Facility", fp);
+        tabbedPane.addTab("Employees", eg);
 
         ChangeListener changeListener = new ChangeListener() {
             public void stateChanged(ChangeEvent changeEvent) {
