@@ -13,6 +13,7 @@ import classes.GlobalData;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import enums.GroupEnum;
 
 public class EmployeeGUI extends JPanel {
 
@@ -71,11 +72,13 @@ public class EmployeeGUI extends JPanel {
     }
 
     public void updateEmployeeDropdown(ArrayList<Employee> employees) {
-        employeeDropdown.removeAllItems();
+        DefaultComboBoxModel<Employee> model = new DefaultComboBoxModel<>();
         for (Employee employee : employees) {
-            employeeDropdown.addItem(employee);
+            model.addElement(employee);
         }
+        employeeDropdown.setModel(model);
     }
+    
 
     public void updateTicketDropdown(Employee selectedEmployee) {
         ticketDropdown.removeAllItems();
@@ -88,6 +91,12 @@ public class EmployeeGUI extends JPanel {
 
     public static void main(String[] args) {
         // Create an instance of EmployeeGUI
+
+        // Add the employees to the GlobalData
+        GlobalData.addEmployee("John", GroupEnum.CLEANING, "ID001");
+        GlobalData.addEmployee("Jane",GroupEnum.CLEANING, "ID002");
+        GlobalData.addEmployee("Mark",GroupEnum.CLEANING, "ID003");
+        
         EmployeeGUI employeeGUI = new EmployeeGUI(GlobalData.getTickets());
     }
 }

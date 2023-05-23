@@ -30,13 +30,9 @@ public class Employee implements Comparable<Employee> {
 
     
     @Override
-    public String toString() {
-        String message = this.name + " as " + this.group + " with tasks\n";
-        for (Todo todo : todos) {
-            message += todo.toString() + "\n";
-        }
-        return message;
-    }
+public String toString() {
+    return getName();
+}
 
     @Override
     public int compareTo(Employee o) {
