@@ -64,6 +64,14 @@ public class DataBuildingsPanel extends JPanel {
 
         buttonSave = new JButton("Speichern");
         add(buttonSave);
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TicketForm ticketForm = new TicketForm();
+                ticketForm.setVisible(true);
+            }
+        });
     }
 
     public void updateData(Maintainable item) {
@@ -189,7 +197,37 @@ public class DataBuildingsPanel extends JPanel {
         parkingCountField.setText(String.valueOf(building.getParkingSpaces()));
         add(parkingCountField, gbc);
 
-        initButtons(building);
+        gbc.gridy++;
+
+        buttonTicket = new JButton("Ticket erstellen");
+        add(buttonTicket);
+
+        buttonTicket.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: attach item to TicketForm
+                TicketForm ticketForm = new TicketForm();
+                ticketForm.setVisible(true);
+            }
+        });
+
+        buttonSave = new JButton("Speichern");
+        add(buttonSave);
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                building.setName(nameField.getText());
+                building.getAddress().setStreet(streetField.getText());
+                building.getAddress().setHouseNumber(Integer.valueOf(houseNumberField.getText()));
+                building.getAddress().setPostalCode(Integer.valueOf(zipCodeField.getText()));
+                building.getAddress().setCity(cityField.getText());
+                building.setConstructionYear(Integer.parseInt(yearBuiltField.getText()));
+                building.setEmployeeCount(Integer.parseInt(employeeCountField.getText()));
+                building.setParkingSpaces(Integer.parseInt(parkingCountField.getText()));
+
+            }
+        });
 
     }
 
@@ -293,7 +331,35 @@ public class DataBuildingsPanel extends JPanel {
         seatCountField.setText(String.valueOf(room.getSeatCount()));
         add(seatCountField, gbc);
 
-        initButtons(room);
+        gbc.gridy++;
+
+        buttonTicket = new JButton("Ticket erstellen");
+        add(buttonTicket);
+
+        buttonTicket.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: attach item to TicketForm
+                TicketForm ticketForm = new TicketForm();
+                ticketForm.setVisible(true);
+            }
+        });
+
+        buttonSave = new JButton("Speichern");
+        add(buttonSave);
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                room.setLength(Double.parseDouble(lengthField.getText()));
+                room.setWidth(Double.parseDouble(widthField.getText()));
+                room.setHeight(Double.parseDouble(heightField.getText()));
+                room.setFlooring((RoomFlooringEnum) flooringComboBox.getSelectedItem());
+                room.setType((RoomTypesEnum) roomTypeComboBox.getSelectedItem());
+                room.setSeatCount(Integer.parseInt(seatCountField.getText()));
+
+            }
+        });
     }
 
     private void setupLevel(Level level) {
@@ -348,6 +414,30 @@ public class DataBuildingsPanel extends JPanel {
         roomScrollPane.setPreferredSize(new Dimension(200, 100));
         add(roomScrollPane, gbc);
 
-        initButtons(level);
+        gbc.gridy++;
+
+        buttonTicket = new JButton("Ticket erstellen");
+        add(buttonTicket);
+
+        buttonTicket.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: attach item to TicketForm
+                TicketForm ticketForm = new TicketForm();
+                ticketForm.setVisible(true);
+            }
+        });
+
+        buttonSave = new JButton("Speichern");
+        add(buttonSave);
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                level.setMaxRooms(Integer.parseInt(maxRoomsField.getText()));
+
+            }
+        });
+
     }
 }
