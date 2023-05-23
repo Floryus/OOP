@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import classes.Todo;
-import classes.maintainable;
+import classes.Maintainable;
 import enums.GroupEnum;
 import enums.PriorityEnum;
 import enums.StatusEnum;
@@ -20,14 +20,14 @@ public class Ticket extends Todo implements Comparable<Ticket> {
 
     // Handling info
     Date dueDate;
-    maintainable item;
+    Maintainable item;
     GroupEnum group;
 
     // Progress info
     boolean isArchived;
     StatusEnum status;
 
-    public Ticket(String title, String description, PriorityEnum prio, maintainable item, GroupEnum group) {
+    public Ticket(String title, String description, PriorityEnum prio, Maintainable item, GroupEnum group) {
 
         // Fixed
         this.isArchived = false;
