@@ -9,13 +9,14 @@ import classes.Room;
 import classes.Equipment;
 import enums.EquipTypeEnum;
 import enums.RoomFlooringEnum;
+import enums.RoomTypesEnum;
 
 public class TestRoom {
     public static void testRoomMethods() {
         // Create test objects
         Building building = new Building("Building A");
         Level level = new Level(1, building, 10);
-        Room room = new Room(building, level);
+        Room room = new Room(building, level, RoomTypesEnum.BREAK_ROOM);
         RoomFlooringEnum flooring = RoomFlooringEnum.CARPET;
         double length = 10.0;
         double width = 8.0;
@@ -96,7 +97,7 @@ public class TestRoom {
         }
 
         // Test compareTo() method
-        Room otherRoom = new Room(building, level);
+        Room otherRoom = new Room(building, level, RoomTypesEnum.TECH_ROOM);
         int compareToResult = room.compareTo(otherRoom);
         if (compareToResult != 0) {
             System.err.println("compareTo() method failed!");

@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 public class TestEquipment {
     public static void testEquipmentMethods() {
         GregorianCalendar acquisitionDate = new GregorianCalendar(2021, 0, 1);
-        Room room = new Room(null, null);
+        Room room = new Room(null, null, null);
         Equipment equipment = new Equipment("Equipment A", EquipTypeEnum.PRINTER, acquisitionDate, 6, room);
 
         // Test getName() method
@@ -86,7 +86,7 @@ public class TestEquipment {
         }
 
         // Test setRoom() method
-        Room newRoom = new Room(null, null);
+        Room newRoom = new Room(null, null, null);
         equipment.setRoom(newRoom);
         if (newRoom != equipment.getRoom()) {
             System.err.println("setRoom() method failed!");
