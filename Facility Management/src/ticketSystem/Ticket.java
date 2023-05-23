@@ -14,22 +14,22 @@ public class Ticket extends Todo implements Comparable<Ticket> {
     GregorianCalendar dueDate;
     Maintainable item;
     GroupEnum group;
-    boolean isArchived
+    boolean isArchived;
     StatusEnum status;
-  
-    public Ticket(String title, String description, PriorityEnum prio,GregorianCalendar dueDate, Maintainable item, GroupEnum group) {
+
+    public Ticket(String title, String description, PriorityEnum prio, GregorianCalendar dueDate, Maintainable item,
+            GroupEnum group) {
+        super(title, description, prio);
         // Fixed
         this.isArchived = false;
         status = StatusEnum.OPEN;
 
-        super(title, description, prio);
         // Input
         // this.dueDate = dueDate;
         this.item = item;
         this.group = group;
         this.dueDate = dueDate;
     }
-
 
     public String getTitle() {
         return title;

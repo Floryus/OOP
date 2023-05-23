@@ -42,11 +42,12 @@ public class GlobalData {
     private static void addBuilding(Building building) {
         buildings.add(building);
     }
-  
-    public static Task createTask(String title, String description, PriorityEnum prio, int maintenanceInterval){
-        Task task = new Task(title, description, prio,maintenanceInterval);
+
+    public static Task createTask(String title, String description, PriorityEnum prio, int maintenanceInterval) {
+        Task task = new Task(title, description, prio, maintenanceInterval);
         tasks.add(task);
-        return task;}
+        return task;
+    }
 
     public String toString() {
         String message = "Buildings:\n";
