@@ -56,24 +56,48 @@ public class Building extends Maintainable implements Comparable<Building> {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public int getMaxLevels() {
         return maxLevels;
     }
 
+    public void setMaxLevels(int maxLevels) {
+        this.maxLevels = maxLevels;
+    }
+
     public int getEmployeeCount() {
         return employeeCount;
+    }
+
+    public void setEmployeeCount(int employeeCount) {
+        this.employeeCount = employeeCount;
     }
 
     public int getConstructionYear() {
         return constructionYear;
     }
 
+    public void setConstructionYear(int constructionYear) {
+        this.constructionYear = constructionYear;
+    }
+
     public int getParkingSpaces() {
         return parkingSpaces;
+    }
+
+    public void setParkingSpaces(int parkingSpaces) {
+        this.parkingSpaces = parkingSpaces;
     }
 
     public String toString() {

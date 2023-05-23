@@ -46,6 +46,10 @@ public class Level extends Maintainable implements Comparable<Level> {
         return maxRooms;
     }
 
+    public void setMaxRooms(int maxRooms) {
+        this.maxRooms = maxRooms;
+    }
+
     public int getLevelNumber() {
         return levelNumber;
     }

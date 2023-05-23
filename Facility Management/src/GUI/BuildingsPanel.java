@@ -79,13 +79,14 @@ public class BuildingsPanel extends JPanel {
                         // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                         BuildingTreeNode buildingTreeNode = (BuildingTreeNode) selectedNode.getUserObject();
                         Building building = buildingTreeNode.getBuilding();
-                        System.out.println("Panel update with " + building);
                         dataPanel.updateData(building);
+                        showPopup(selectedNode);
                     } else if (selectedNode.getUserObject() instanceof LevelTreeNode) {
                         // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                         LevelTreeNode levelTreeNode = (LevelTreeNode) selectedNode.getUserObject();
                         Level level = levelTreeNode.getLevel();
                         dataPanel.updateData(level);
+                        showPopup(selectedNode);
                     } else if (selectedNode.getUserObject() instanceof RoomTreeNode) {
                         // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                         RoomTreeNode roomTreeNode = (RoomTreeNode) selectedNode.getUserObject();
