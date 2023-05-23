@@ -32,5 +32,17 @@ public void setMaintenanceInterval(int maintenanceInterval){
 public int getMaintenanceInterval(){
     return maintenanceInterval;
 }
+
+public String getTitle() {
+    return title;
+}
+
+public String getDescription() {
+    return description;
+}
+
+public PriorityEnum getPriority() {
+    return prio;
+}
     
 }

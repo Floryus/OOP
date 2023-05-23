@@ -8,6 +8,7 @@ import classes.GlobalData;
 import classes.Room;
 import enums.GroupEnum;
 import enums.PriorityEnum;
+import test.*;
 import ticketSystem.Ticket;
 
 public class App {
@@ -59,5 +60,8 @@ public class App {
         ArrayList<Ticket> arl = GlobalData.getTickets();
         int i = arl.indexOf(t);
         arl.set(i, t);
+        
+        //testing
+        //TestManager.testMethods();
     }
 }

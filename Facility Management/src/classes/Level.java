@@ -11,7 +11,7 @@ public class Level extends Maintainable implements Comparable<Level> {
     ArrayList<Room> rooms = new ArrayList<Room>();
     private int currRoomNumber = 0;
 
-    Level(int levelNumber, Building building, int maxRooms) {
+   public Level(int levelNumber, Building building, int maxRooms) {
         this.levelNumber = levelNumber;
         this.building = building;
         this.maxRooms = maxRooms;

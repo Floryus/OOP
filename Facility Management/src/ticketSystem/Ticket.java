@@ -66,4 +66,8 @@ public class Ticket extends Todo implements Comparable<Ticket> {
         }
         this.status = arr[curr + 1];
     }
+
+    public StatusEnum getStatus() {
+        return null;
+    }
 }
