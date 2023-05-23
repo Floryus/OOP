@@ -1,12 +1,34 @@
 package classes;
 
+import java.util.GregorianCalendar;
+
 import enums.PriorityEnum;
+import enums.StatusEnum;
 
 public abstract class Todo {
-    PriorityEnum prio;
-    String ID;
-    Employee resp;
+    //basic info
+    protected String title;
+    protected  String description;
+    final GregorianCalendar CREATIONDATE;
+    protected String id;
+    //status info
+    protected Employee resp;
+    protected PriorityEnum prio;
+    protected GregorianCalendar dueDate;
+    protected boolean isArchived;
+    protected StatusEnum status;
 
+
+public Todo(String title, String description, PriorityEnum prio){
+        //fixed
+        CREATIONDATE = new GregorianCalendar();
+        isArchived = false;
+        status = StatusEnum.OPEN;
+        //input
+        this.title = title;
+        this.description = description;
+        this.prio = prio;
+}
 
     // Wem wurde die Aufgabe zugewiesen?
     public Employee getResp() {

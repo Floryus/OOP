@@ -11,6 +11,7 @@ public class GlobalData {
     String name;
     private static ArrayList<Building> buildings = new ArrayList<>();
     private static ArrayList<Ticket> tickets = new ArrayList<>();
+    private static ArrayList<Task> tasks = new ArrayList<>();
 
     public GlobalData(String name) {
         this.name = name;
@@ -26,19 +27,21 @@ public class GlobalData {
 
     public static Ticket addTicket(String title, String description, PriorityEnum prio, maintainable item,
             GroupEnum group) {
-        Ticket ticket = new Ticket(title, description, prio, item, group);
+        Ticket ticket = new Ticket(title, description, prio, null, item, group);
         tickets.add(ticket);
         return ticket;
     }
 
     public static Building createBuilding(String name, int maxLevels, String address) {
         Building building = new Building(name, maxLevels, address);
-        addBuilding(building);
+        buildings.add(building);
         return building;
     }
 
-    private static void addBuilding(Building building) {
-        buildings.add(building);
+    public static Task createTask(String title, String description, PriorityEnum prio, int maintenanceInterval){
+        Task task = new Task(title, description, prio,maintenanceInterval);
+        tasks.add(task);
+        return task;
     }
 
     public String toString() {
