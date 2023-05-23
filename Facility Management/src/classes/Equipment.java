@@ -3,23 +3,25 @@ package classes;
 import enums.EquipStatusEnum;
 import enums.EquipTypeEnum;
 
-import java.time.LocalDate;
+
+import java.util.GregorianCalendar;
+
 
 public class Equipment implements Comparable<Equipment> {
     private String name;
     private EquipTypeEnum equipType;
     private EquipStatusEnum equipStatus;
-    private LocalDate acquisitionDate;
-    private LocalDate lastMaintenanceDate;
-    private MaintenanceInterval maintenanceInterval;
+    private GregorianCalendar acquisitionDate;
+    private GregorianCalendar lastMaintenanceDate;
+    private int maintenanceInterval;
     private Room room;
 
-    public Equipment(String name, EquipTypeEnum equipType, LocalDate acquisitionDate, MaintenanceInterval maintenanceInterval, Room room) {
+    public Equipment(String name, EquipTypeEnum equipType, GregorianCalendar acquisitionDate, int maintenanceInterval, Room room) {
         this.name = name;
         this.equipType = equipType;
         this.equipStatus = EquipStatusEnum.ACTIVE;
         this.acquisitionDate = acquisitionDate;
-        this.lastMaintenanceDate = acquisitionDate;
+        lastMaintenanceDate.add(GregorianCalendar.MONTH, -maintenanceInterval);
         this.maintenanceInterval = maintenanceInterval;
         this.room = room;
     }
@@ -44,27 +46,27 @@ public class Equipment implements Comparable<Equipment> {
         this.equipStatus = equipStatus;
     }
 
-    public LocalDate getAcquisitionDate() {
+    public GregorianCalendar getAcquisitionDate() {
         return acquisitionDate;
     }
 
-    public void setAcquisitionDate(LocalDate acquisitionDate) {
+    public void setAcquisitionDate(GregorianCalendar acquisitionDate) {
         this.acquisitionDate = acquisitionDate;
     }
 
-    public LocalDate getLastMaintenanceDate() {
+    public GregorianCalendar getLastMaintenanceDate() {
         return lastMaintenanceDate;
     }
 
-    public void setLastMaintenanceDate(LocalDate lastMaintenanceDate) {
+    public void setLastMaintenanceDate(GregorianCalendar lastMaintenanceDate) {
         this.lastMaintenanceDate = lastMaintenanceDate;
     }
 
-    public MaintenanceInterval getMaintenanceInterval() {
+    public int getMaintenanceInterval() {
         return maintenanceInterval;
     }
 
-    public void setMaintenanceInterval(MaintenanceInterval maintenanceInterval) {
+    public void setMaintenanceInterval(int maintenanceInterval) {
         this.maintenanceInterval = maintenanceInterval;
     }
 

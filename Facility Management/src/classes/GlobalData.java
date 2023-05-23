@@ -8,13 +8,8 @@ import ticketSystem.Ticket;
 
 public class GlobalData {
 
-    String name;
     private static ArrayList<Building> buildings = new ArrayList<>();
     private static ArrayList<Ticket> tickets = new ArrayList<>();
-
-    public GlobalData(String name) {
-        this.name = name;
-    }
 
     public static ArrayList<Building> getBuildings() {
         return buildings;
@@ -24,15 +19,15 @@ public class GlobalData {
         return tickets;
     }
 
-    public static Ticket addTicket(String title, String description, PriorityEnum prio, maintainable item,
+    public static Ticket addTicket(String title, String description, PriorityEnum prio, Maintainable item,
             GroupEnum group) {
         Ticket ticket = new Ticket(title, description, prio, item, group);
         tickets.add(ticket);
         return ticket;
     }
 
-    public static Building createBuilding(String name, int maxLevels, String address) {
-        Building building = new Building(name, maxLevels, address);
+    public static Building createBuilding(String name, int maxLevels, Address address, int employeeCount, String owner, int constructionYear, int parkingSpaces) {
+        Building building = new Building(name, maxLevels, address, employeeCount, owner, constructionYear, parkingSpaces);
         addBuilding(building);
         return building;
     }
