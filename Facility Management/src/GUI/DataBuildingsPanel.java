@@ -28,7 +28,6 @@ import javax.swing.JScrollPane;
 
 import javax.swing.DefaultListModel;
 
-
 public class DataBuildingsPanel extends JPanel {
 
     private JLabel dataLabel;
@@ -65,13 +64,20 @@ public class DataBuildingsPanel extends JPanel {
 
         buttonSave = new JButton("Speichern");
         add(buttonSave);
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TicketForm ticketForm = new TicketForm();
+                ticketForm.setVisible(true);
+            }
+        });
     }
 
     public void updateData(Maintainable item) {
         removeAll();
         System.out.println("Update Panel data");
         if (item instanceof Building) {
-            System.out.println(" | with " + item);
             setupBuilding((Building) item);
             repaint();
             revalidate();
@@ -191,7 +197,37 @@ public class DataBuildingsPanel extends JPanel {
         parkingCountField.setText(String.valueOf(building.getParkingSpaces()));
         add(parkingCountField, gbc);
 
-        initButtons(building);
+        gbc.gridy++;
+
+        buttonTicket = new JButton("Ticket erstellen");
+        add(buttonTicket);
+
+        buttonTicket.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: attach item to TicketForm
+                TicketForm ticketForm = new TicketForm();
+                ticketForm.setVisible(true);
+            }
+        });
+
+        buttonSave = new JButton("Speichern");
+        add(buttonSave);
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                building.setName(nameField.getText());
+                building.getAddress().setStreet(streetField.getText());
+                building.getAddress().setHouseNumber(Integer.valueOf(houseNumberField.getText()));
+                building.getAddress().setPostalCode(Integer.valueOf(zipCodeField.getText()));
+                building.getAddress().setCity(cityField.getText());
+                building.setConstructionYear(Integer.parseInt(yearBuiltField.getText()));
+                building.setEmployeeCount(Integer.parseInt(employeeCountField.getText()));
+                building.setParkingSpaces(Integer.parseInt(parkingCountField.getText()));
+
+            }
+        });
 
     }
 
@@ -295,62 +331,113 @@ public class DataBuildingsPanel extends JPanel {
         seatCountField.setText(String.valueOf(room.getSeatCount()));
         add(seatCountField, gbc);
 
-        initButtons(room);
+        gbc.gridy++;
+
+        buttonTicket = new JButton("Ticket erstellen");
+        add(buttonTicket);
+
+        buttonTicket.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: attach item to TicketForm
+                TicketForm ticketForm = new TicketForm();
+                ticketForm.setVisible(true);
+            }
+        });
+
+        buttonSave = new JButton("Speichern");
+        add(buttonSave);
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                room.setLength(Double.parseDouble(lengthField.getText()));
+                room.setWidth(Double.parseDouble(widthField.getText()));
+                room.setHeight(Double.parseDouble(heightField.getText()));
+                room.setFlooring((RoomFlooringEnum) flooringComboBox.getSelectedItem());
+                room.setType((RoomTypesEnum) roomTypeComboBox.getSelectedItem());
+                room.setSeatCount(Integer.parseInt(seatCountField.getText()));
+
+            }
+        });
     }
 
+    private void setupLevel(Level level) {
 
-private void setupLevel(Level level) {
+        JTextField levelNumberField;
+        JTextField maxRoomsField;
+        DefaultListModel<Room> roomListModel;
+        JList<Room> roomList;
 
-    JTextField levelNumberField;
-    JTextField maxRoomsField;
-    DefaultListModel<Room> roomListModel;
-    JList<Room> roomList;
+        setLayout(new GridBagLayout());
 
-    setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 5, 5, 5);
 
-    GridBagConstraints gbc = new GridBagConstraints();
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    gbc.anchor = GridBagConstraints.WEST;
-    gbc.insets = new Insets(5, 5, 5, 5);
+        JLabel levelNumberLabel = new JLabel("Ebenennummer:");
+        add(levelNumberLabel, gbc);
 
-    JLabel levelNumberLabel = new JLabel("Ebenennummer:");
-    add(levelNumberLabel, gbc);
+        gbc.gridy++;
+        JLabel maxRoomsLabel = new JLabel("Maximale Anzahl an Räumen:");
+        add(maxRoomsLabel, gbc);
 
-    gbc.gridy++;
-    JLabel maxRoomsLabel = new JLabel("Maximale Anzahl an Räumen:");
-    add(maxRoomsLabel, gbc);
+        gbc.gridy++;
+        JLabel roomListLabel = new JLabel("Räume:");
+        add(roomListLabel, gbc);
 
-    gbc.gridy++;
-    JLabel roomListLabel = new JLabel("Räume:");
-    add(roomListLabel, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-    gbc.gridx = 1;
-    gbc.gridy = 0;
-    gbc.weightx = 1.0;
-    gbc.fill = GridBagConstraints.HORIZONTAL;
+        levelNumberField = new JTextField();
+        levelNumberField.setEditable(false);
+        levelNumberField.setText(String.valueOf(level.getLevelNumber()));
+        add(levelNumberField, gbc);
 
-    levelNumberField = new JTextField();
-    levelNumberField.setEditable(false);
-    levelNumberField.setText(String.valueOf(level.getLevelNumber()));
-    add(levelNumberField, gbc);
+        gbc.gridy++;
+        maxRoomsField = new JTextField();
+        maxRoomsField.setEditable(false);
+        maxRoomsField.setText(String.valueOf(level.getMaxRooms()));
+        add(maxRoomsField, gbc);
 
-    gbc.gridy++;
-    maxRoomsField = new JTextField();
-    maxRoomsField.setEditable(false);
-    maxRoomsField.setText(String.valueOf(level.getMaxRooms()));
-    add(maxRoomsField, gbc);
+        gbc.gridy++;
+        roomListModel = new DefaultListModel<>();
+        for (Room room : level.getRooms()) {
+            roomListModel.addElement(room);
+        }
+        roomList = new JList<>(roomListModel);
+        JScrollPane roomScrollPane = new JScrollPane(roomList);
+        roomScrollPane.setPreferredSize(new Dimension(200, 100));
+        add(roomScrollPane, gbc);
 
-    gbc.gridy++;
-    roomListModel = new DefaultListModel<>();
-    for (Room room : level.getRooms()) {
-        roomListModel.addElement(room);
-    }
-    roomList = new JList<>(roomListModel);
-    JScrollPane roomScrollPane = new JScrollPane(roomList);
-    roomScrollPane.setPreferredSize(new Dimension(200, 100));
-    add(roomScrollPane, gbc);
+        gbc.gridy++;
 
-    initButtons(level);
+        buttonTicket = new JButton("Ticket erstellen");
+        add(buttonTicket);
+
+        buttonTicket.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: attach item to TicketForm
+                TicketForm ticketForm = new TicketForm();
+                ticketForm.setVisible(true);
+            }
+        });
+
+        buttonSave = new JButton("Speichern");
+        add(buttonSave);
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                level.setMaxRooms(Integer.parseInt(maxRoomsField.getText()));
+
+            }
+        });
+
     }
 }
