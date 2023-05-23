@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 
 import GUI.FullScreenMain;
@@ -14,6 +13,7 @@ import ticketSystem.Ticket;
 public class App {
     public static void main(String[] args) throws Exception {
 
+
         Building ber = GlobalData.createBuilding("Berlin", 5, new Address("Straße ", 17, 14532, "Berlin"), 50, 2000,
                 20);
         Level bl1 = ber.createLevel(10);
@@ -21,6 +21,7 @@ public class App {
 
         Building wdf = GlobalData.createBuilding("Walldorf", 5, new Address("Straße ", 17, 14532, "Berlin"), 50, 2000,
                 20);
+
         Level wl1 = wdf.createLevel(2);
         Room wl1r1 = wl1.createRoom(null);
         Room wl1r2 = wl1.createRoom(null);
@@ -31,6 +32,7 @@ public class App {
 
         Building seo = GlobalData.createBuilding("Seoul", 5, new Address("Straße ", 17, 14532, "Berlin"), 50, 2000,
                 20);
+
         Level sl1 = seo.createLevel(10);
         Room sl1r1 = sl1.createRoom(null);
         Room sl1r2 = sl1.createRoom(null);
