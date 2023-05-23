@@ -1,7 +1,7 @@
 package classes;
 
 import java.util.ArrayList;
-
+import ticketSystem.Ticket;
 import enums.GroupEnum;
 
 public class Employee implements Comparable<Employee> {
@@ -28,6 +28,7 @@ public class Employee implements Comparable<Employee> {
         return this.group;
     }
 
+    
     @Override
     public String toString() {
         String message = this.name + " as " + this.group + " with tasks\n";

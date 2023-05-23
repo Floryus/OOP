@@ -7,7 +7,6 @@ public abstract class Todo {
     String ID;
     Employee resp;
 
-
     // Wem wurde die Aufgabe zugewiesen?
     public Employee getResp() {
         return resp; 
