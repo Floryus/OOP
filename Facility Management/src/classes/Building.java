@@ -2,7 +2,7 @@ package classes;
 
 import java.util.ArrayList;
 
-public class Building implements Comparable<Building> {
+public class Building extends Maintainable implements Comparable<Building> {
     String name;
     private int maxLevels;
     ArrayList<Level> levels = new ArrayList<Level>();
@@ -25,6 +25,16 @@ public class Building implements Comparable<Building> {
             throw new InvalidException("Ungültiger Level-Index: " + number);
         }
         return levels.get(number);
+    }
+
+    @Override
+    public void delete() {
+        GlobalData.deleteBuilding(this);
+        System.out.println("aus building: delete " + this.name);
+    }
+
+    public void deleteLevel(Level level) {
+        this.levels.remove(level);
     }
 
     public ArrayList<Level> getLevels() {

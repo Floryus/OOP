@@ -24,7 +24,7 @@ public class GlobalData {
         return tickets;
     }
 
-    public static Ticket addTicket(String title, String description, PriorityEnum prio, maintainable item,
+    public static Ticket addTicket(String title, String description, PriorityEnum prio, Maintainable item,
             GroupEnum group) {
         Ticket ticket = new Ticket(title, description, prio, item, group);
         tickets.add(ticket);
@@ -35,6 +35,10 @@ public class GlobalData {
         Building building = new Building(name, maxLevels, address);
         addBuilding(building);
         return building;
+    }
+
+    public static void deleteBuilding(Building building) {
+        GlobalData.buildings.remove(building);
     }
 
     private static void addBuilding(Building building) {

@@ -1,6 +1,6 @@
 package classes;
 
-public class Room extends maintainable implements Comparable<Room> {
+public class Room extends Maintainable implements Comparable<Room> {
     Building building;
     Level level;
     private String name;
@@ -9,6 +9,11 @@ public class Room extends maintainable implements Comparable<Room> {
         this.building = building;
         this.level = level;
         name = this.level.createRoomNumber();
+    }
+
+    @Override
+    public void delete() {
+        level.deleteRoom(this);
     }
 
     public String getName() {

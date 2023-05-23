@@ -1,6 +1,6 @@
 package classes;
 
-public class Equipment extends maintainable implements Comparable<Equipment> {
+public class Equipment extends Maintainable implements Comparable<Equipment> {
     String name;
     boolean hasTicket;
 

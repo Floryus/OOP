@@ -144,9 +144,9 @@ public class BuildingsPanel extends JPanel {
 
         // Hinzufügen von Menüelementen
         JMenuItem menuItemInfo = new JMenuItem("Info");
-        JMenuItem menuItemEdit = new JMenuItem("Edit");
+        JMenuItem menuItemDelete = new JMenuItem("Delete");
 
-        menuItemInfo.addActionListener(new ActionListener() {
+        menuItemDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Aktion ausführen, wenn "Info" ausgewählt wird
@@ -157,25 +157,54 @@ public class BuildingsPanel extends JPanel {
                     // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     BuildingTreeNode buildingTreeNode = (BuildingTreeNode) node.getUserObject();
                     Building building = buildingTreeNode.getBuilding();
+                    building.delete();
+                    reloadTree();
+                } else if (node.getUserObject() instanceof LevelTreeNode) {
+                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
+                    LevelTreeNode levelTreeNode = (LevelTreeNode) node.getUserObject();
+                    Level level = levelTreeNode.getLevel();
+                    level.delete();
+                    reloadTree();
+                } else if (node.getUserObject() instanceof RoomTreeNode) {
+                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
+                    RoomTreeNode roomTreeNode = (RoomTreeNode) node.getUserObject();
+                    Room room = roomTreeNode.getRoom();
+                    room.delete();
+                    reloadTree();
+                }
+                // TODO: Equipment case
+
+            }
+        });
+
+        menuItemInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Überprüfen, ob der Knoten Building Klasse verwendet
+                if (node.getUserObject() instanceof BuildingTreeNode) {
+                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
+                    BuildingTreeNode buildingTreeNode = (BuildingTreeNode) node.getUserObject();
+                    Building building = buildingTreeNode.getBuilding();
                     dataPanel.updateData(building);
                 } else if (node.getUserObject() instanceof LevelTreeNode) {
                     // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     LevelTreeNode levelTreeNode = (LevelTreeNode) node.getUserObject();
                     Level level = levelTreeNode.getLevel();
-                    dataPanel.updateData(level.toString());
+                    dataPanel.updateData(level);
                 } else if (node.getUserObject() instanceof RoomTreeNode) {
                     // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     RoomTreeNode roomTreeNode = (RoomTreeNode) node.getUserObject();
                     Room room = roomTreeNode.getRoom();
-                    dataPanel.updateData(room.toString());
+                    dataPanel.updateData(room);
                 }
 
+                // TODO: Equipment case
             }
         });
 
         // Items hinzufügen
         popupMenu.add(menuItemInfo);
-        popupMenu.add(menuItemEdit);
+        popupMenu.add(menuItemDelete);
 
         // Anzeigen des Popups an der Position des ausgewählten Elements
         Rectangle bounds = tree.getPathBounds(tree.getSelectionPath());
@@ -183,7 +212,7 @@ public class BuildingsPanel extends JPanel {
     }
 
     private void buildDataPanel() {
-        dataPanel = new DataBuildingsPanel();
+        dataPanel = new DataBuildingsPanel(this);
 
         add(dataPanel, BorderLayout.EAST);
     }

@@ -1,5 +1,7 @@
 package classes;
 
-public abstract class maintainable {
-
+public abstract class Maintainable {
+    public void delete() {
+        System.out.println("aus maintainable");
+    }
 }
