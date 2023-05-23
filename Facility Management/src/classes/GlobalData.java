@@ -31,8 +31,9 @@ public class GlobalData {
         return ticket;
     }
 
-    public static Building createBuilding(String name, int maxLevels, String address) {
-        Building building = new Building(name, maxLevels, address);
+    public static Building createBuilding(String name, int maxLevels, Address address, int employeeCount,
+            int constructionYear, int parkingSpaces) {
+        Building building = new Building(name, maxLevels, address, employeeCount, constructionYear, parkingSpaces);
         addBuilding(building);
         return building;
     }

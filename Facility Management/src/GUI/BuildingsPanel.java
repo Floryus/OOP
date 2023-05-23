@@ -74,8 +74,25 @@ public class BuildingsPanel extends JPanel {
 
                 } else {
                     // Anzeigen des Popups basierend auf dem ausgewählten Knoten
-                    // TODO: exchange Popup with Panel
-                    showPopup(selectedNode);
+
+                    if (selectedNode.getUserObject() instanceof BuildingTreeNode) {
+                        // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
+                        BuildingTreeNode buildingTreeNode = (BuildingTreeNode) selectedNode.getUserObject();
+                        Building building = buildingTreeNode.getBuilding();
+                        System.out.println("Panel update with " + building);
+                        dataPanel.updateData(building);
+                    } else if (selectedNode.getUserObject() instanceof LevelTreeNode) {
+                        // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
+                        LevelTreeNode levelTreeNode = (LevelTreeNode) selectedNode.getUserObject();
+                        Level level = levelTreeNode.getLevel();
+                        dataPanel.updateData(level);
+                    } else if (selectedNode.getUserObject() instanceof RoomTreeNode) {
+                        // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
+                        RoomTreeNode roomTreeNode = (RoomTreeNode) selectedNode.getUserObject();
+                        Room room = roomTreeNode.getRoom();
+                        dataPanel.updateData(room);
+                        showPopup(selectedNode);
+                    }
                 }
 
             }
@@ -143,7 +160,6 @@ public class BuildingsPanel extends JPanel {
         JPopupMenu popupMenu = new JPopupMenu();
 
         // Hinzufügen von Menüelementen
-        JMenuItem menuItemInfo = new JMenuItem("Info");
         JMenuItem menuItemDelete = new JMenuItem("Delete");
 
         menuItemDelete.addActionListener(new ActionListener() {
@@ -177,33 +193,6 @@ public class BuildingsPanel extends JPanel {
             }
         });
 
-        menuItemInfo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Überprüfen, ob der Knoten Building Klasse verwendet
-                if (node.getUserObject() instanceof BuildingTreeNode) {
-                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
-                    BuildingTreeNode buildingTreeNode = (BuildingTreeNode) node.getUserObject();
-                    Building building = buildingTreeNode.getBuilding();
-                    dataPanel.updateData(building);
-                } else if (node.getUserObject() instanceof LevelTreeNode) {
-                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
-                    LevelTreeNode levelTreeNode = (LevelTreeNode) node.getUserObject();
-                    Level level = levelTreeNode.getLevel();
-                    dataPanel.updateData(level);
-                } else if (node.getUserObject() instanceof RoomTreeNode) {
-                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
-                    RoomTreeNode roomTreeNode = (RoomTreeNode) node.getUserObject();
-                    Room room = roomTreeNode.getRoom();
-                    dataPanel.updateData(room);
-                }
-
-                // TODO: Equipment case
-            }
-        });
-
-        // Items hinzufügen
-        popupMenu.add(menuItemInfo);
         popupMenu.add(menuItemDelete);
 
         // Anzeigen des Popups an der Position des ausgewählten Elements

@@ -59,21 +59,11 @@ public class DataBuildingsPanel extends JPanel {
 
     public void updateData(Maintainable item) {
         removeAll();
+        System.out.println("Update Panel data");
         if (item instanceof Building) {
+            System.out.println(" | with " + item);
             setupBuilding((Building) item);
         }
-    }
-
-    private void setup(Level lvl) {
-
-    }
-
-    private void setup(Room room) {
-
-    }
-
-    private void setup(Equipment equip) {
-
     }
 
     private void setupBuilding(Building building) {
@@ -85,7 +75,6 @@ public class DataBuildingsPanel extends JPanel {
         JTextField cityField;
         JTextField yearBuiltField;
         JTextField employeeCountField;
-        JTextField ownerField;
         JTextField parkingCountField;
 
         setLayout(new GridBagLayout());
@@ -124,10 +113,6 @@ public class DataBuildingsPanel extends JPanel {
         add(employeeCountLabel, gbc);
 
         gbc.gridy++;
-        JLabel ownerLabel = new JLabel("Besitzer:");
-        add(ownerLabel, gbc);
-
-        gbc.gridy++;
         JLabel parkingCountLabel = new JLabel("Parkplatzanzahl:");
         add(parkingCountLabel, gbc);
 
@@ -138,46 +123,49 @@ public class DataBuildingsPanel extends JPanel {
 
         nameField = new JTextField();
         nameField.setEditable(true);
+        nameField.setText(building.getName());
         add(nameField, gbc);
 
         gbc.gridy++;
         streetField = new JTextField();
         streetField.setEditable(true);
+        streetField.setText(building.getAddress().getStreet());
         add(streetField, gbc);
 
         gbc.gridy++;
         houseNumberField = new JTextField();
         houseNumberField.setEditable(true);
+        houseNumberField.setText(String.valueOf(building.getAddress().getHouseNumber()));
         add(houseNumberField, gbc);
 
         gbc.gridy++;
         zipCodeField = new JTextField();
         zipCodeField.setEditable(true);
+        zipCodeField.setText(String.valueOf(building.getAddress().getPostalCode()));
         add(zipCodeField, gbc);
 
         gbc.gridy++;
         cityField = new JTextField();
         cityField.setEditable(true);
+        cityField.setText(String.valueOf(building.getAddress().getCity()));
         add(cityField, gbc);
 
         gbc.gridy++;
         yearBuiltField = new JTextField();
         yearBuiltField.setEditable(true);
+        yearBuiltField.setText(String.valueOf(building.getConstructionYear()));
         add(yearBuiltField, gbc);
 
         gbc.gridy++;
         employeeCountField = new JTextField();
         employeeCountField.setEditable(true);
+        employeeCountField.setText(String.valueOf(building.getEmployeeCount()));
         add(employeeCountField, gbc);
-
-        gbc.gridy++;
-        ownerField = new JTextField();
-        ownerField.setEditable(true);
-        add(ownerField, gbc);
 
         gbc.gridy++;
         parkingCountField = new JTextField();
         parkingCountField.setEditable(true);
+        parkingCountField.setText(String.valueOf(building.getParkingSpaces()));
         add(parkingCountField, gbc);
 
         initButtons(building);

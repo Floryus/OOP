@@ -8,17 +8,19 @@ public class Building extends Maintainable implements Comparable<Building> {
     private ArrayList<Level> levels = new ArrayList<Level>();
     private Address address;
     private int employeeCount;
-    private String owner;
     private int constructionYear;
     private int parkingSpaces;
 
-    Building(String name, int maxLevels, Address address, int employeeCount, String owner, int constructionYear,
+    Building(String name) {
+        this.name = name;
+    }
+
+    Building(String name, int maxLevels, Address address, int employeeCount, int constructionYear,
             int parkingSpaces) {
         this.name = name;
         this.maxLevels = maxLevels;
         this.address = address;
         this.employeeCount = employeeCount;
-        this.owner = owner;
         this.constructionYear = constructionYear;
         this.parkingSpaces = parkingSpaces;
     }
@@ -64,10 +66,6 @@ public class Building extends Maintainable implements Comparable<Building> {
 
     public int getEmployeeCount() {
         return employeeCount;
-    }
-
-    public String getOwner() {
-        return owner;
     }
 
     public int getConstructionYear() {
