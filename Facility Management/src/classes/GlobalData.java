@@ -26,10 +26,17 @@ public class GlobalData {
         return ticket;
     }
 
-    public static Building createBuilding(String name, int maxLevels, Address address, int employeeCount, String owner, int constructionYear, int parkingSpaces) {
-        Building building = new Building(name, maxLevels, address, employeeCount, owner, constructionYear, parkingSpaces);
+
+    public static Building createBuilding(String name, int maxLevels, Address address, int employeeCount,
+            int constructionYear, int parkingSpaces) {
+        Building building = new Building(name, maxLevels, address, employeeCount, constructionYear, parkingSpaces);
+
         addBuilding(building);
         return building;
+    }
+
+    public static void deleteBuilding(Building building) {
+        GlobalData.buildings.remove(building);
     }
 
     private static void addBuilding(Building building) {

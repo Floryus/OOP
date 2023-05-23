@@ -1,5 +1,6 @@
 package classes;
 
+
 import enums.RoomFlooringEnum;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 public class Room extends Maintainable implements Comparable<Room> {
     private Building building;
     private Level level;
+
     private String name;
     private double length;
     private double width;
@@ -21,6 +23,11 @@ public class Room extends Maintainable implements Comparable<Room> {
         this.level = level;
         name = this.level.createRoomNumber();
         equipmentList = new ArrayList<>();
+    }
+
+    @Override
+    public void delete() {
+        level.deleteRoom(this);
     }
 
     public String getName() {

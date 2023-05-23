@@ -3,7 +3,6 @@ package classes;
 import enums.EquipStatusEnum;
 import enums.EquipTypeEnum;
 
-
 import java.util.GregorianCalendar;
 
 

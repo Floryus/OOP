@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import enums.RoomTypesEnum;
 
-public class Level implements Comparable<Level> {
+public class Level extends Maintainable implements Comparable<Level> {
     int levelNumber;
     int maxRooms;
     Building building;
@@ -46,6 +46,15 @@ public class Level implements Comparable<Level> {
     public String createRoomNumber() {
         currRoomNumber++;
         return String.valueOf(this.levelNumber) + "." + String.valueOf(currRoomNumber - 1);
+    }
+
+    @Override
+    public void delete() {
+        building.deleteLevel(this);
+    }
+
+    public void deleteRoom(Room room) {
+        this.rooms.remove(room);
     }
 
     public ArrayList<Room> getRooms() {

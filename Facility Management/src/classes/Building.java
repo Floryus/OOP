@@ -2,22 +2,25 @@ package classes;
 
 import java.util.ArrayList;
 
-public class Building implements Comparable<Building> {
+public class Building extends Maintainable implements Comparable<Building> {
     private String name;
     private int maxLevels;
     private ArrayList<Level> levels = new ArrayList<Level>();
     private Address address;
     private int employeeCount;
-    private String owner;
     private int constructionYear;
     private int parkingSpaces;
 
-    Building(String name, int maxLevels, Address address, int employeeCount, String owner, int constructionYear, int parkingSpaces) {
+    Building(String name) {
+        this.name = name;
+    }
+
+    Building(String name, int maxLevels, Address address, int employeeCount, int constructionYear,
+            int parkingSpaces) {
         this.name = name;
         this.maxLevels = maxLevels;
         this.address = address;
         this.employeeCount = employeeCount;
-        this.owner = owner;
         this.constructionYear = constructionYear;
         this.parkingSpaces = parkingSpaces;
     }
@@ -35,6 +38,16 @@ public class Building implements Comparable<Building> {
         return levels.get(number);
     }
 
+    @Override
+    public void delete() {
+        GlobalData.deleteBuilding(this);
+        System.out.println("aus building: delete " + this.name);
+    }
+
+    public void deleteLevel(Level level) {
+        this.levels.remove(level);
+    }
+
     public ArrayList<Level> getLevels() {
         return levels;
     }
@@ -50,19 +63,15 @@ public class Building implements Comparable<Building> {
     public int getMaxLevels() {
         return maxLevels;
     }
-    
+
     public int getEmployeeCount() {
         return employeeCount;
     }
-    
-    public String getOwner() {
-        return owner;
-    }
-    
+
     public int getConstructionYear() {
         return constructionYear;
     }
-    
+
     public int getParkingSpaces() {
         return parkingSpaces;
     }
