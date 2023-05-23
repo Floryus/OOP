@@ -11,11 +11,11 @@ public class Building extends Maintainable implements Comparable<Building> {
     private int constructionYear;
     private int parkingSpaces;
 
-    Building(String name) {
+    public Building(String name) {
         this.name = name;
     }
 
-    Building(String name, int maxLevels, Address address, int employeeCount, int constructionYear,
+    public Building(String name, int maxLevels, Address address, int employeeCount, int constructionYear,
             int parkingSpaces) {
         this.name = name;
         this.maxLevels = maxLevels;
