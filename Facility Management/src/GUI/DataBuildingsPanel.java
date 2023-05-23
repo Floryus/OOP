@@ -28,7 +28,6 @@ import javax.swing.JScrollPane;
 
 import javax.swing.DefaultListModel;
 
-
 public class DataBuildingsPanel extends JPanel {
 
     private JLabel dataLabel;
@@ -71,7 +70,6 @@ public class DataBuildingsPanel extends JPanel {
         removeAll();
         System.out.println("Update Panel data");
         if (item instanceof Building) {
-            System.out.println(" | with " + item);
             setupBuilding((Building) item);
             repaint();
             revalidate();
@@ -298,59 +296,58 @@ public class DataBuildingsPanel extends JPanel {
         initButtons(room);
     }
 
+    private void setupLevel(Level level) {
 
-private void setupLevel(Level level) {
+        JTextField levelNumberField;
+        JTextField maxRoomsField;
+        DefaultListModel<Room> roomListModel;
+        JList<Room> roomList;
 
-    JTextField levelNumberField;
-    JTextField maxRoomsField;
-    DefaultListModel<Room> roomListModel;
-    JList<Room> roomList;
+        setLayout(new GridBagLayout());
 
-    setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 5, 5, 5);
 
-    GridBagConstraints gbc = new GridBagConstraints();
-    gbc.gridx = 0;
-    gbc.gridy = 0;
-    gbc.anchor = GridBagConstraints.WEST;
-    gbc.insets = new Insets(5, 5, 5, 5);
+        JLabel levelNumberLabel = new JLabel("Ebenennummer:");
+        add(levelNumberLabel, gbc);
 
-    JLabel levelNumberLabel = new JLabel("Ebenennummer:");
-    add(levelNumberLabel, gbc);
+        gbc.gridy++;
+        JLabel maxRoomsLabel = new JLabel("Maximale Anzahl an Räumen:");
+        add(maxRoomsLabel, gbc);
 
-    gbc.gridy++;
-    JLabel maxRoomsLabel = new JLabel("Maximale Anzahl an Räumen:");
-    add(maxRoomsLabel, gbc);
+        gbc.gridy++;
+        JLabel roomListLabel = new JLabel("Räume:");
+        add(roomListLabel, gbc);
 
-    gbc.gridy++;
-    JLabel roomListLabel = new JLabel("Räume:");
-    add(roomListLabel, gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-    gbc.gridx = 1;
-    gbc.gridy = 0;
-    gbc.weightx = 1.0;
-    gbc.fill = GridBagConstraints.HORIZONTAL;
+        levelNumberField = new JTextField();
+        levelNumberField.setEditable(false);
+        levelNumberField.setText(String.valueOf(level.getLevelNumber()));
+        add(levelNumberField, gbc);
 
-    levelNumberField = new JTextField();
-    levelNumberField.setEditable(false);
-    levelNumberField.setText(String.valueOf(level.getLevelNumber()));
-    add(levelNumberField, gbc);
+        gbc.gridy++;
+        maxRoomsField = new JTextField();
+        maxRoomsField.setEditable(false);
+        maxRoomsField.setText(String.valueOf(level.getMaxRooms()));
+        add(maxRoomsField, gbc);
 
-    gbc.gridy++;
-    maxRoomsField = new JTextField();
-    maxRoomsField.setEditable(false);
-    maxRoomsField.setText(String.valueOf(level.getMaxRooms()));
-    add(maxRoomsField, gbc);
+        gbc.gridy++;
+        roomListModel = new DefaultListModel<>();
+        for (Room room : level.getRooms()) {
+            roomListModel.addElement(room);
+        }
+        roomList = new JList<>(roomListModel);
+        JScrollPane roomScrollPane = new JScrollPane(roomList);
+        roomScrollPane.setPreferredSize(new Dimension(200, 100));
+        add(roomScrollPane, gbc);
 
-    gbc.gridy++;
-    roomListModel = new DefaultListModel<>();
-    for (Room room : level.getRooms()) {
-        roomListModel.addElement(room);
-    }
-    roomList = new JList<>(roomListModel);
-    JScrollPane roomScrollPane = new JScrollPane(roomList);
-    roomScrollPane.setPreferredSize(new Dimension(200, 100));
-    add(roomScrollPane, gbc);
-
-    initButtons(level);
+        initButtons(level);
     }
 }
