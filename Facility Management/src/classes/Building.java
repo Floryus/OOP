@@ -2,16 +2,27 @@ package classes;
 
 import java.util.ArrayList;
 
-public class Building implements Comparable<Building> {
-    String name;
+public class Building extends Maintainable implements Comparable<Building> {
+    private String name;
     private int maxLevels;
-    ArrayList<Level> levels = new ArrayList<Level>();
-    private String address;
+    private ArrayList<Level> levels = new ArrayList<Level>();
+    private Address address;
+    private int employeeCount;
+    private int constructionYear;
+    private int parkingSpaces;
 
-    Building(String name, int maxLevels, String address) {
+    Building(String name) {
+        this.name = name;
+    }
+
+    Building(String name, int maxLevels, Address address, int employeeCount, int constructionYear,
+            int parkingSpaces) {
         this.name = name;
         this.maxLevels = maxLevels;
         this.address = address;
+        this.employeeCount = employeeCount;
+        this.constructionYear = constructionYear;
+        this.parkingSpaces = parkingSpaces;
     }
 
     public Level createLevel(int maxRooms) {
@@ -27,6 +38,16 @@ public class Building implements Comparable<Building> {
         return levels.get(number);
     }
 
+    @Override
+    public void delete() {
+        GlobalData.deleteBuilding(this);
+        System.out.println("aus building: delete " + this.name);
+    }
+
+    public void deleteLevel(Level level) {
+        this.levels.remove(level);
+    }
+
     public ArrayList<Level> getLevels() {
         return levels;
     }
@@ -35,7 +56,7 @@ public class Building implements Comparable<Building> {
         return name;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
@@ -43,13 +64,24 @@ public class Building implements Comparable<Building> {
         return maxLevels;
     }
 
+    public int getEmployeeCount() {
+        return employeeCount;
+    }
+
+    public int getConstructionYear() {
+        return constructionYear;
+    }
+
+    public int getParkingSpaces() {
+        return parkingSpaces;
+    }
+
     public String toString() {
-        return "Building " + this.name + " with " + this.levels.size() + " levels.";
+        return "Building " + this.name + " with " + this.levels.size() + " levels. Address: " + address.toString();
     }
 
     @Override
     public int compareTo(Building other) {
         return this.name.toLowerCase().compareTo(other.name.toLowerCase());
     }
-
 }

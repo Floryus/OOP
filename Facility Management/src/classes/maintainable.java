@@ -1,5 +1,5 @@
 package classes;
 
-public abstract class maintainable {
+public abstract class Maintainable {
 
 }
