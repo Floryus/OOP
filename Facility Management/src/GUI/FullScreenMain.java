@@ -27,9 +27,11 @@ public class FullScreenMain extends JFrame {
         CleaningPanel cp = new CleaningPanel(tickets);
         ITPanel ip = new ITPanel(tickets);
         FacilityPanel fp = new FacilityPanel(tickets);
+        EmployeePanel ep = new EmployeePanel();
 
         JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.addTab("Buildings", bp);
+        tabbedPane.addTab("Gebäude", bp);
+        tabbedPane.addTab("Mitarbeiter", ep);
         tabbedPane.addTab("Cleaning", cp);
         tabbedPane.addTab("IT", ip);
         tabbedPane.addTab("Facility", fp);

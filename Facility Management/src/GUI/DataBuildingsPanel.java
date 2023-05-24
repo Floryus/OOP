@@ -49,34 +49,6 @@ public class DataBuildingsPanel extends JPanel {
 
     }
 
-    /**
-     * @param item
-     */
-    private void initButtons(Maintainable item) {
-
-        buttonTicket = new JButton("Ticket erstellen");
-        add(buttonTicket);
-
-        buttonTicket.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TicketForm ticketForm = new TicketForm();
-                ticketForm.setVisible(true);
-            }
-        });
-
-        buttonSave = new JButton("Speichern");
-        add(buttonSave);
-
-        buttonSave.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TicketForm ticketForm = new TicketForm();
-                ticketForm.setVisible(true);
-            }
-        });
-    }
-
     public void updateData(Maintainable item) {
         removeAll();
         System.out.println("Update Panel data");

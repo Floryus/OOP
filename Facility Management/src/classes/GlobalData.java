@@ -11,9 +11,9 @@ public class GlobalData {
     private static ArrayList<Building> buildings = new ArrayList<>();
     private static ArrayList<Ticket> tickets = new ArrayList<>();
     private static ArrayList<Task> tasks = new ArrayList<>();
+    private static ArrayList<Employee> employees = new ArrayList<>();
 
-    
-    /** 
+    /**
      * @return ArrayList<Building>
      */
     public static ArrayList<Building> getBuildings() {
@@ -45,6 +45,16 @@ public class GlobalData {
 
     private static void addBuilding(Building building) {
         buildings.add(building);
+    }
+
+    public static ArrayList<Employee> getEmployees() {
+        return employees;
+    }
+
+    public static Employee addEmployee(String name, GroupEnum group) {
+        Employee employee = new Employee(name, group);
+        employees.add(employee);
+        return employee;
     }
 
     public static Task createTask(String title, String description, PriorityEnum prio, int maintenanceInterval) {

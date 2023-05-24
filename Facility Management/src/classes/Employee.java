@@ -1,18 +1,16 @@
 package classes;
 
-import java.util.ArrayList;
-
 import enums.GroupEnum;
 
 public class Employee implements Comparable<Employee> {
     String name;
     GroupEnum group;
-    String id;
+    int id;
 
-    public Employee(String name, GroupEnum group, String id) {
+    public Employee(String name, GroupEnum group) {
         this.name = name;
         this.group = group;
-        this.id = id;
+        this.id = GlobalData.getEmployees().size();
     }
 
     /**
@@ -22,7 +20,7 @@ public class Employee implements Comparable<Employee> {
         return this.name;
     }
 
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
@@ -32,12 +30,12 @@ public class Employee implements Comparable<Employee> {
 
     @Override
     public String toString() {
-        String message = this.name + " as " + this.group + " with tasks\n";
+        String message = this.id + " " + this.name;
         return message;
     }
 
     @Override
-    public int compareTo(Employee o) {
-        return this.name.compareTo(o.name);
+    public int compareTo(Employee other) {
+        return Integer.compare(this.id, other.id);
     }
 }
