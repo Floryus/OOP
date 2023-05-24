@@ -18,6 +18,9 @@ public class CleaningPanel extends JPanel {
         this.ticketArrayList = tickets;
     }
 
+    /**
+     * @param tickets
+     */
     public void updateContent(ArrayList<Ticket> tickets) {
         TicketManager tm = new TicketManager(GroupEnum.CLEANING, tickets);
         JTable j = new JTable(tm.getData(), tm.getColumnNames());

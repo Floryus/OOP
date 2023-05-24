@@ -13,6 +13,10 @@ public class Address {
         this.city = city;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getStreet() {
         return street;
     }

@@ -12,8 +12,12 @@ import test.*;
 import ticketSystem.Ticket;
 
 public class App {
-    public static void main(String[] args) throws Exception {
 
+    /**
+     * @param args
+     * @throws Exception
+     */
+    public static void main(String[] args) throws Exception {
 
         Building ber = GlobalData.createBuilding("Berlin", 5, new Address("Straße ", 17, 14532, "Berlin"), 50, 2000,
                 20);
@@ -60,8 +64,8 @@ public class App {
         ArrayList<Ticket> arl = GlobalData.getTickets();
         int i = arl.indexOf(t);
         arl.set(i, t);
-        
-        //testing
-        //TestManager.testMethods();
+
+        // testing
+        // TestManager.testMethods();
     }
 }

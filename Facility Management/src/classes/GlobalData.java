@@ -12,6 +12,10 @@ public class GlobalData {
     private static ArrayList<Ticket> tickets = new ArrayList<>();
     private static ArrayList<Task> tasks = new ArrayList<>();
 
+    
+    /** 
+     * @return ArrayList<Building>
+     */
     public static ArrayList<Building> getBuildings() {
         return buildings;
     }

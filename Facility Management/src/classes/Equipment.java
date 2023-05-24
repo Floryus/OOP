@@ -5,7 +5,6 @@ import enums.EquipTypeEnum;
 
 import java.util.GregorianCalendar;
 
-
 public class Equipment implements Comparable<Equipment> {
     private String name;
     private EquipTypeEnum equipType;
@@ -15,7 +14,8 @@ public class Equipment implements Comparable<Equipment> {
     private int maintenanceInterval;
     private Room room;
 
-    public Equipment(String name, EquipTypeEnum equipType, GregorianCalendar acquisitionDate, int maintenanceInterval, Room room) {
+    public Equipment(String name, EquipTypeEnum equipType, GregorianCalendar acquisitionDate, int maintenanceInterval,
+            Room room) {
         this.name = name;
         this.equipType = equipType;
         this.equipStatus = EquipStatusEnum.ACTIVE;
@@ -25,6 +25,9 @@ public class Equipment implements Comparable<Equipment> {
         this.room = room;
     }
 
+    /**
+     * @return String
+     */
     public String getName() {
         return name;
     }

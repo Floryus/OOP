@@ -31,6 +31,9 @@ public class Ticket extends Todo implements Comparable<Ticket> {
         this.dueDate = dueDate;
     }
 
+    /**
+     * @return String
+     */
     public String getTitle() {
         return title;
     }

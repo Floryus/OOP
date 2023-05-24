@@ -156,6 +156,9 @@ public class BuildingsPanel extends JPanel {
         buildTree();
     }
 
+    /**
+     * @param node
+     */
     private void showPopup(DefaultMutableTreeNode node) {
         // Erstellen des Popup-Menüs
         JPopupMenu popupMenu = new JPopupMenu();

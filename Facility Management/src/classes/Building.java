@@ -25,6 +25,10 @@ public class Building extends Maintainable implements Comparable<Building> {
         this.parkingSpaces = parkingSpaces;
     }
 
+    /**
+     * @param maxRooms
+     * @return Level
+     */
     public Level createLevel(int maxRooms) {
         Level lvl = new Level(levels.size(), this, maxRooms);
         levels.add(lvl);

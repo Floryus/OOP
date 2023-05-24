@@ -32,6 +32,9 @@ public class Room extends Maintainable implements Comparable<Room> {
         level.deleteRoom(this);
     }
 
+    /**
+     * @return String
+     */
     public String getName() {
         return name;
     }

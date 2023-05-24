@@ -7,7 +7,7 @@ import enums.GroupEnum;
 public class Employee implements Comparable<Employee> {
     String name;
     GroupEnum group;
-    String id; 
+    String id;
 
     public Employee(String name, GroupEnum group, String id) {
         this.name = name;
@@ -15,6 +15,9 @@ public class Employee implements Comparable<Employee> {
         this.id = id;
     }
 
+    /**
+     * @return String
+     */
     public String getName() {
         return this.name;
     }

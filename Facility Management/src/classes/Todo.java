@@ -6,33 +6,35 @@ import enums.PriorityEnum;
 import enums.StatusEnum;
 
 public abstract class Todo {
-    //basic info
+    // basic info
     protected String title;
-    protected  String description;
+    protected String description;
     final GregorianCalendar CREATIONDATE;
     protected String id;
-    //status info
+    // status info
     protected Employee resp;
     protected PriorityEnum prio;
     protected GregorianCalendar dueDate;
     protected boolean isArchived;
     protected StatusEnum status;
 
-
-public Todo(String title, String description, PriorityEnum prio){
-        //fixed
+    public Todo(String title, String description, PriorityEnum prio) {
+        // fixed
         CREATIONDATE = new GregorianCalendar();
         isArchived = false;
         status = StatusEnum.OPEN;
-        //input
+        // input
         this.title = title;
         this.description = description;
         this.prio = prio;
-}
+    }
 
+    /**
+     * @return Employee
+     */
     // Wem wurde die Aufgabe zugewiesen?
     public Employee getResp() {
-        return resp; 
+        return resp;
     }
 
     // Wurde die Aufgabe schon jemandem zugewiesen?

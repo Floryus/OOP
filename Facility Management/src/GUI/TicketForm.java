@@ -65,6 +65,11 @@ public class TicketForm extends JFrame {
         });
     }
 
+    /**
+     * @param labelText
+     * @param component
+     * @return JPanel
+     */
     private JPanel createLabeledComponent(String labelText, JComponent component) {
         JPanel panel = new JPanel(new BorderLayout());
         JLabel label = new JLabel(labelText);

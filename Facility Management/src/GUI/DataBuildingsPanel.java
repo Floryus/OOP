@@ -49,6 +49,9 @@ public class DataBuildingsPanel extends JPanel {
 
     }
 
+    /**
+     * @param item
+     */
     private void initButtons(Maintainable item) {
 
         buttonTicket = new JButton("Ticket erstellen");

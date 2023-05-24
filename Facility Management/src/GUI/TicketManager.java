@@ -22,6 +22,9 @@ public class TicketManager {
         cleaningTickets.sort(null);
     }
 
+    /**
+     * @return String[]
+     */
     public String[] getColumnNames() {
         return columnNames;
     }
