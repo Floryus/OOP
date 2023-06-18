@@ -16,17 +16,31 @@ public class EmployeePanel extends JPanel {
     private JLabel idLabel;
     private JLabel nameLabel;
     private JLabel groupLabel;
+    private JTextField idTextField;
+    private JTextField nameTextField;
+    private JTextField groupTextField;
 
     public EmployeePanel() {
+        setLayout(new BorderLayout());
         initComponents();
     }
 
     private void initComponents() {
-        setLayout(new BorderLayout());
+        initInfoPanel();
+
+    }
+
+    private void initInfoPanel() {
+        setLayout(new GridBagLayout());
+        setPreferredSize(getPreferredSize());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 5, 5, 5);
 
         // Dropdown-Menü mit den Employee-Objekten erstellen
-        ArrayList<Employee> employees = GlobalData.getEmployees();
-        Employee[] employeeArray = employees.toArray(new Employee[0]);
+        Employee[] employeeArray = GlobalData.getEmployees().toArray(new Employee[0]);
         employeeComboBox = new JComboBox<>(employeeArray);
         employeeComboBox.addActionListener(new ActionListener() {
             @Override
@@ -34,24 +48,54 @@ public class EmployeePanel extends JPanel {
                 // Aktualisiere die angezeigten Informationen, wenn ein Employee ausgewählt wird
                 Employee selectedEmployee = (Employee) employeeComboBox.getSelectedItem();
                 if (selectedEmployee != null) {
-                    idLabel.setText("ID: " + selectedEmployee.getId());
-                    nameLabel.setText("Name: " + selectedEmployee.getName());
-                    groupLabel.setText("Gruppe: " + selectedEmployee.getGroup());
+                    idTextField.setText(String.valueOf(selectedEmployee.getId()));
+                    nameTextField.setText(selectedEmployee.getName());
+                    groupTextField.setText(selectedEmployee.getGroup().toString());
+                    revalidate();
+                    repaint();
                 }
             }
         });
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        add(new JLabel("Mitarbeiter:"), gbc);
 
-        // Panel für die Labels erstellen
-        JPanel labelsPanel = new JPanel(new GridLayout(4, 1, 1, 1));
-        dropdownLabel = new JLabel("Mitarbeiter: ");
+        gbc.gridx++;
+        add(employeeComboBox, gbc);
+
+        // Leerer Platzhalter für Button "Mitarbeiter erstellen"
+        gbc.gridy++;
+        add(new JLabel(), gbc);
+
+        // Labels und Textfelder für ID, Name und Gruppe
+        gbc.gridy++;
         idLabel = new JLabel("ID:");
+        gbc.gridx = 0;
+        add(idLabel, gbc);
+
+        idTextField = new JTextField();
+        idTextField.setEditable(false);
+        gbc.gridx = 1;
+        add(idTextField, gbc);
+
+        gbc.gridy++;
         nameLabel = new JLabel("Name:");
+        gbc.gridx = 0;
+        add(nameLabel, gbc);
+
+        nameTextField = new JTextField();
+        nameTextField.setEditable(false);
+        gbc.gridx = 1;
+        add(nameTextField, gbc);
+
+        gbc.gridy++;
         groupLabel = new JLabel("Gruppe:");
-        labelsPanel.add(dropdownLabel);
-        labelsPanel.add(employeeComboBox);
-        labelsPanel.add(idLabel);
-        labelsPanel.add(nameLabel);
-        labelsPanel.add(groupLabel);
-        add(labelsPanel, BorderLayout.NORTH);
+        gbc.gridx = 0;
+        add(groupLabel, gbc);
+
+        groupTextField = new JTextField();
+        groupTextField.setEditable(false);
+        gbc.gridx = 1;
+        add(groupTextField, gbc);
     }
 }

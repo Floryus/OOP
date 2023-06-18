@@ -47,7 +47,7 @@ public class FullScreenMain extends JFrame {
         tabbedPane.addChangeListener(changeListener);
 
         setLayout(new BorderLayout());
-        add(tabbedPane, BorderLayout.CENTER);
+        add(tabbedPane, BorderLayout.NORTH);
 
         pack();
 
