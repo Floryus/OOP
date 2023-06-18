@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ticketSystem.Ticket;
+import classes.Ticket;
 
 import java.awt.*;
 import java.util.ArrayList;

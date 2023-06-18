@@ -2,8 +2,8 @@ package GUI;
 
 import java.util.ArrayList;
 
+import classes.Ticket;
 import enums.GroupEnum;
-import ticketSystem.Ticket;
 
 public class TicketManager {
     private ArrayList<Ticket> tickets;

@@ -2,32 +2,46 @@ package classes;
 
 import java.util.ArrayList;
 
+import classes.verwaltungsklassen.BuildingVerwaltung;
+import classes.verwaltungsklassen.EmployeeVerwaltung;
+import classes.verwaltungsklassen.TaskVerwaltung;
+import classes.verwaltungsklassen.TicketVerwaltung;
 import enums.GroupEnum;
 import enums.PriorityEnum;
-import ticketSystem.Ticket;
+
+/***
+ * Diese Klasse ist eine Art Datenbank, in der alle Daten gespeichert werden.
+ * Sie ist das zentrale Schaltwerk für alle Klassen, welche von vielen Orten der
+ * Anwendung genutzt werden aber nur einmal im gesamten Programm existieren
+ * sollen.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
+ */
 
 public class GlobalData {
 
-    private static ArrayList<Building> buildings = new ArrayList<>();
-    private static ArrayList<Ticket> tickets = new ArrayList<>();
-    private static ArrayList<Task> tasks = new ArrayList<>();
-    private static ArrayList<Employee> employees = new ArrayList<>();
+    private static BuildingVerwaltung buildingVerwaltung = new BuildingVerwaltung();
+    private static TicketVerwaltung ticketVerwaltung = new TicketVerwaltung();
+    private static TaskVerwaltung taskVerwaltung = new TaskVerwaltung();
+    private static EmployeeVerwaltung employeeVerwaltung = new EmployeeVerwaltung();
 
     /**
      * @return ArrayList<Building>
      */
     public static ArrayList<Building> getBuildings() {
-        return buildings;
+        return buildingVerwaltung.getBuildings();
     }
 
     public static ArrayList<Ticket> getTickets() {
-        return tickets;
+        return ticketVerwaltung.getTickets();
     }
 
     public static Ticket addTicket(String title, String description, PriorityEnum prio, Maintainable item,
             GroupEnum group) {
         Ticket ticket = new Ticket(title, description, prio, null, item, group);
-        tickets.add(ticket);
+        ticketVerwaltung.addTicket(ticket);
         return ticket;
     }
 
@@ -40,36 +54,36 @@ public class GlobalData {
     }
 
     public static void deleteBuilding(Building building) {
-        GlobalData.buildings.remove(building);
+        GlobalData.buildingVerwaltung.removeBuilding(building);
     }
 
     private static void addBuilding(Building building) {
-        buildings.add(building);
+        GlobalData.buildingVerwaltung.addBuilding(building);
     }
 
     public static ArrayList<Employee> getEmployees() {
-        return employees;
+        return employeeVerwaltung.getEmployees();
     }
 
     public static Employee addEmployee(String name, GroupEnum group) {
         Employee employee = new Employee(name, group);
-        employees.add(employee);
+        employeeVerwaltung.addEmployee(employee);
         return employee;
     }
 
     public static Task createTask(String title, String description, PriorityEnum prio, int maintenanceInterval) {
         Task task = new Task(title, description, prio, maintenanceInterval);
-        tasks.add(task);
+        taskVerwaltung.addTask(task);
         return task;
     }
 
     public String toString() {
         String message = "Buildings:\n";
-        for (Building building : buildings) {
+        for (Building building : buildingVerwaltung.getBuildings()) {
             message += building.getName() + "\n";
         }
         message += "\nTickets:\n";
-        for (Ticket ticket : tickets) {
+        for (Ticket ticket : ticketVerwaltung.getTickets()) {
             message += ticket.getTitle();
         }
         return message;

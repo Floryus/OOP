@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
 import java.awt.event.*;
 
 import javax.swing.JButton;
@@ -20,6 +19,9 @@ import classes.Maintainable;
 import classes.Room;
 
 import javax.swing.JComboBox;
+
+import enums.EquipStatusEnum;
+import enums.EquipTypeEnum;
 import enums.RoomFlooringEnum;
 import enums.RoomTypesEnum;
 
@@ -64,6 +66,11 @@ public class DataBuildingsPanel extends JPanel {
             repaint();
         } else if (item instanceof Level) {
             setupLevel((Level) item);
+            repaint();
+            revalidate();
+            repaint();
+        } else if (item instanceof Equipment) {
+            setupEquipment((Equipment) item);
             repaint();
             revalidate();
             repaint();
@@ -262,7 +269,7 @@ public class DataBuildingsPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         nameField = new JTextField();
-        nameField.setEditable(false);
+        nameField.setEditable(true);
         nameField.setText(room.getName());
         add(nameField, gbc);
 
@@ -415,4 +422,126 @@ public class DataBuildingsPanel extends JPanel {
         });
 
     }
+
+    private void setupEquipment(Equipment equipment) {
+        JTextField nameField;
+        JTextField equipTypeField;
+        JTextField equipStatusField;
+        JTextField acquisitionDateField;
+        JTextField lastMaintenanceDateField;
+        JTextField maintenanceIntervalField;
+        JTextField roomField;
+
+        setLayout(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        JLabel nameLabel = new JLabel("Name:");
+        add(nameLabel, gbc);
+
+        gbc.gridy++;
+        JLabel equipTypeLabel = new JLabel("Ausrüstungstyp:");
+        add(equipTypeLabel, gbc);
+
+        gbc.gridy++;
+        JLabel equipStatusLabel = new JLabel("Ausrüstungsstatus:");
+        add(equipStatusLabel, gbc);
+
+        gbc.gridy++;
+        JLabel acquisitionDateLabel = new JLabel("Anschaffungsdatum:");
+        add(acquisitionDateLabel, gbc);
+
+        gbc.gridy++;
+        JLabel lastMaintenanceDateLabel = new JLabel("Letztes Wartungsdatum:");
+        add(lastMaintenanceDateLabel, gbc);
+
+        gbc.gridy++;
+        JLabel maintenanceIntervalLabel = new JLabel("Wartungsintervall (Monate):");
+        add(maintenanceIntervalLabel, gbc);
+
+        gbc.gridy++;
+        JLabel roomLabel = new JLabel("Raum:");
+        add(roomLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        nameField = new JTextField();
+        nameField.setEditable(true);
+        nameField.setText(equipment.getName());
+        add(nameField, gbc);
+
+        gbc.gridy++;
+        equipTypeField = new JTextField();
+        equipTypeField.setEditable(true);
+        equipTypeField.setText(equipment.getEquipType().toString());
+        add(equipTypeField, gbc);
+
+        gbc.gridy++;
+        equipStatusField = new JTextField();
+        equipStatusField.setEditable(false);
+        equipStatusField.setText(equipment.getEquipStatus().toString());
+        add(equipStatusField, gbc);
+
+        gbc.gridy++;
+        acquisitionDateField = new JTextField();
+        acquisitionDateField.setEditable(true);
+        acquisitionDateField.setText(equipment.getAcquisitionDate().toString());
+        add(acquisitionDateField, gbc);
+
+        gbc.gridy++;
+        lastMaintenanceDateField = new JTextField();
+        lastMaintenanceDateField.setEditable(false);
+        try {
+            lastMaintenanceDateField.setText(equipment.getLastMaintenanceDate().toString());
+        } catch (NullPointerException e) {
+            lastMaintenanceDateField.setText("Noch keine Wartung");
+        }
+        add(lastMaintenanceDateField, gbc);
+
+        gbc.gridy++;
+        maintenanceIntervalField = new JTextField();
+        maintenanceIntervalField.setEditable(true);
+        maintenanceIntervalField.setText(String.valueOf(equipment.getMaintenanceInterval()));
+        add(maintenanceIntervalField, gbc);
+
+        gbc.gridy++;
+        roomField = new JTextField();
+        roomField.setEditable(false);
+        roomField.setText(equipment.getRoom().toString());
+        add(roomField, gbc);
+
+        gbc.gridy++;
+
+        buttonTicket = new JButton("Ticket erstellen");
+        add(buttonTicket);
+
+        buttonTicket.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: Implement Ticket functionality
+            }
+        });
+
+        buttonSave = new JButton("Speichern");
+        add(buttonSave);
+
+        buttonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                equipment.setName(nameField.getText());
+                equipment.setEquipType(EquipTypeEnum.valueOf(equipTypeField.getText()));
+                equipment.setEquipStatus(EquipStatusEnum.valueOf(equipStatusField.getText()));
+                equipment.setMaintenanceInterval(Integer.parseInt(maintenanceIntervalField.getText()));
+            }
+        });
+
+    }
+
 }

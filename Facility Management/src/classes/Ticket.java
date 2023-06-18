@@ -1,10 +1,8 @@
-package ticketSystem;
+package classes;
 
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 
-import classes.Todo;
-import classes.Maintainable;
 import enums.GroupEnum;
 import enums.PriorityEnum;
 import enums.StatusEnum;
