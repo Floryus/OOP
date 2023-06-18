@@ -9,6 +9,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
 import classes.Building;
+import classes.Equipment;
 import classes.Level;
 import classes.GlobalData;
 import classes.Room;
@@ -21,6 +22,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+
+/*
+ * Dieses Panel ist das GUI für das Building Panel.
+ * Es bietet eine Baumansicht der Gebäude, Etagen und Räume, sowie deren Equipment.
+ * Es erlaubt CRUD Operationen.
+ * Es erlaubt das Anzeigen von Informationen zu den selektierten Objekten.
+ * Es erlaubt das Erstellen von Tickets.
+ * 
+ * @author Florian Schmidt
+ * 
+ * 
+ * @version 3.4
+ */
 
 public class BuildingsPanel extends JPanel {
 
@@ -57,15 +71,20 @@ public class BuildingsPanel extends JPanel {
                 if (selectedNode.getUserObject() instanceof AddTreeNode) {
                     System.out.println("New selected" + selectedNode.getUserObject().toString());
 
-                    AddTreeNode roomTreeNode = (AddTreeNode) selectedNode.getUserObject();
-                    if (roomTreeNode.building != null) {
+                    AddTreeNode TreeNode = (AddTreeNode) selectedNode.getUserObject();
+                    if (TreeNode.building != null) {
                         // createLevel - maxRooms
-                        AddLevelPopup addLevelPopup = new AddLevelPopup(this, roomTreeNode.building);
+                        AddLevelPopup addLevelPopup = new AddLevelPopup(this, TreeNode.building);
                         addLevelPopup.setVisible(true);
-                    } else if (roomTreeNode.level != null) {
+                    } else if (TreeNode.level != null) {
                         // createRoom - Room Types Enum
-                        AddRoomPopup addRoomPopup = new AddRoomPopup(this, roomTreeNode.level);
+                        AddRoomPopup addRoomPopup = new AddRoomPopup(this, TreeNode.level);
                         addRoomPopup.setVisible(true);
+                    } else if (TreeNode.room != null) {
+                        // createEquipment - name, description, price, warranty, purchaseDate
+                        AddEquipmentPopup addEquipmentPopup = new AddEquipmentPopup(this,
+                                TreeNode.room);
+                        addEquipmentPopup.setVisible(true);
                     } else {
                         // createBuilding - name, maxLevels, address
                         AddBuildingPopup addBuildingPopup = new AddBuildingPopup(this);
@@ -92,6 +111,12 @@ public class BuildingsPanel extends JPanel {
                         RoomTreeNode roomTreeNode = (RoomTreeNode) selectedNode.getUserObject();
                         Room room = roomTreeNode.getRoom();
                         dataPanel.updateData(room);
+                        showPopup(selectedNode);
+                    } else if (selectedNode.getUserObject() instanceof EquipmentTreeNode) {
+                        // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
+                        EquipmentTreeNode equipmentTreeNode = (EquipmentTreeNode) selectedNode.getUserObject();
+                        Equipment equipment = equipmentTreeNode.getEquipment();
+                        dataPanel.updateData(equipment);
                         showPopup(selectedNode);
                     }
                 }
@@ -128,7 +153,18 @@ public class BuildingsPanel extends JPanel {
                     DefaultMutableTreeNode roomTreeNode = new DefaultMutableTreeNode(roomNode);
                     levelTreeNode.add(roomTreeNode);
 
-                    // TODO: Add Equipment loop
+                    // Füge Equipment hinzu
+                    ArrayList<Equipment> equipments = room.getEquipmentList();
+                    Collections.sort(equipments);
+                    for (Equipment equip : equipments) {
+                        EquipmentTreeNode equipmentNode = new EquipmentTreeNode(equip);
+                        DefaultMutableTreeNode equipmentTreeNode = new DefaultMutableTreeNode(equipmentNode);
+                        roomTreeNode.add(equipmentTreeNode);
+                    }
+                    AddTreeNode addNode = new AddTreeNode(room);
+                    DefaultMutableTreeNode addTreeNode = new DefaultMutableTreeNode(addNode);
+                    roomTreeNode.add(addTreeNode);
+
                 }
                 if (level.getRooms().size() < level.getMaxRooms()) {
                     AddTreeNode addNode = new AddTreeNode(level);
@@ -191,8 +227,13 @@ public class BuildingsPanel extends JPanel {
                     Room room = roomTreeNode.getRoom();
                     room.delete();
                     reloadTree();
+                } else if (node.getUserObject() instanceof EquipmentTreeNode) {
+                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
+                    EquipmentTreeNode equipmentTreeNode = (EquipmentTreeNode) node.getUserObject();
+                    Equipment equipment = equipmentTreeNode.getEquipment();
+                    equipment.delete();
+                    reloadTree();
                 }
-                // TODO: Equipment case
 
             }
         });
@@ -257,7 +298,24 @@ public class BuildingsPanel extends JPanel {
 
         @Override
         public String toString() {
-            return "Room " + String.valueOf(room.getName());
+            return "Raum " + String.valueOf(room.getName());
+        }
+    }
+
+    private class EquipmentTreeNode {
+        private Equipment equipment;
+
+        public EquipmentTreeNode(Equipment equipment) {
+            this.equipment = equipment;
+        }
+
+        public Equipment getEquipment() {
+            return equipment;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(equipment.getName());
         }
     }
 
@@ -265,6 +323,8 @@ public class BuildingsPanel extends JPanel {
 
         private Building building;
         private Level level;
+        private Room room;
+        private Equipment equipment;
 
         // For create Building
         public AddTreeNode() {
@@ -278,6 +338,11 @@ public class BuildingsPanel extends JPanel {
         // For create room
         public AddTreeNode(Level level) {
             this.level = level;
+        }
+
+        // For create equipment
+        public AddTreeNode(Room room) {
+            this.room = room;
         }
 
         @Override

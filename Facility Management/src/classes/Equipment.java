@@ -5,7 +5,7 @@ import enums.EquipTypeEnum;
 
 import java.util.GregorianCalendar;
 
-public class Equipment implements Comparable<Equipment> {
+public class Equipment extends Maintainable implements Comparable<Equipment> {
     private String name;
     private EquipTypeEnum equipType;
     private EquipStatusEnum equipStatus;
@@ -20,7 +20,7 @@ public class Equipment implements Comparable<Equipment> {
         this.equipType = equipType;
         this.equipStatus = EquipStatusEnum.ACTIVE;
         this.acquisitionDate = acquisitionDate;
-        lastMaintenanceDate.add(GregorianCalendar.MONTH, -maintenanceInterval);
+        // lastMaintenanceDate.add(GregorianCalendar.MONTH, -maintenanceInterval);
         this.maintenanceInterval = maintenanceInterval;
         this.room = room;
     }
@@ -80,8 +80,17 @@ public class Equipment implements Comparable<Equipment> {
         this.room = room;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String toString() {
         return this.name;
+    }
+
+    @Override
+    public void delete() {
+        room.removeEquipment(this);
     }
 
     @Override

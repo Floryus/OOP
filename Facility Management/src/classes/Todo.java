@@ -55,4 +55,16 @@ public abstract class Todo {
     public void removeResp() {
         resp = null;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public PriorityEnum getPriority() {
+        return prio;
+    }
+
+    public GregorianCalendar getDueDate() {
+        return dueDate;
+    }
 }

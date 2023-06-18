@@ -3,10 +3,9 @@ package test;
 import classes.Employee;
 import enums.GroupEnum;
 
-
 public class TestEmployee {
     public static void testEmployeeMethods() {
-        Employee employee = new Employee("John Doe", GroupEnum.CLEANING, "12345");
+        Employee employee = new Employee("John Doe", GroupEnum.CLEANING);
 
         // Test getName() method
         if (!"John Doe".equals(employee.getName())) {
@@ -32,7 +31,7 @@ public class TestEmployee {
         }
 
         // Test compareTo() method
-        Employee otherEmployee = new Employee("Jane Smith", GroupEnum.CLEANING, "54321");
+        Employee otherEmployee = new Employee("Jane Smith", GroupEnum.CLEANING);
         int compareToResult = employee.compareTo(otherEmployee);
         if (compareToResult <= 0) {
             System.err.println("compareTo() method failed!");

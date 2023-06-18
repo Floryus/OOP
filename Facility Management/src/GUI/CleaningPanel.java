@@ -3,10 +3,10 @@ package GUI;
 import java.util.ArrayList;
 import javax.swing.JList;
 
+import classes.Ticket;
 import enums.GroupEnum;
 
 import javax.swing.*;
-import ticketSystem.Ticket;
 
 public class CleaningPanel extends JPanel {
 

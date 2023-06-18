@@ -3,9 +3,9 @@ package test;
 import classes.Address;
 import classes.Building;
 import classes.GlobalData;
+import classes.Ticket;
 import enums.GroupEnum;
 import enums.PriorityEnum;
-import ticketSystem.Ticket;
 
 public class TestGlobalData {
     public static void testGlobalDataMethods() {
@@ -41,20 +41,21 @@ public class TestGlobalData {
 
         // // Test createTask() method
         // int maintenanceInterval = 12;
-        // GlobalData.createTask("Task A", "Task A Description", priority, maintenanceInterval);
+        // GlobalData.createTask("Task A", "Task A Description", priority,
+        // maintenanceInterval);
         // if (GlobalData.getTasks().isEmpty()) {
-        //     System.err.println("createTask() method failed!");
+        // System.err.println("createTask() method failed!");
         // }
 
         // // Test toString() method
         // String expectedToString = "Buildings:\n" +
-        //         "Building A\n" +
-        //         "\n" +
-        //         "Tickets:\n" +
-        //         "Ticket A";
+        // "Building A\n" +
+        // "\n" +
+        // "Tickets:\n" +
+        // "Ticket A";
         // String actualToString = GlobalData.toString();
         // if (!expectedToString.equals(actualToString)) {
-        //     System.err.println("toString() method failed!");
+        // System.err.println("toString() method failed!");
         // }
     }
 }

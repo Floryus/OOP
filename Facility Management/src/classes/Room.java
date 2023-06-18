@@ -6,6 +6,8 @@ import enums.RoomTypesEnum;
 import java.util.ArrayList;
 import java.util.List;
 
+import classes.verwaltungsklassen.EquipmentVerwaltung;
+
 public class Room extends Maintainable implements Comparable<Room> {
     private Building building;
     private Level level;
@@ -16,15 +18,14 @@ public class Room extends Maintainable implements Comparable<Room> {
     private double height;
     private RoomFlooringEnum flooring;
     private RoomTypesEnum type;
-    private List<Equipment> equipmentList;
+    private EquipmentVerwaltung equipmentVerwaltung = new EquipmentVerwaltung();
     private int seatCount;
 
-    public Room(Building building, Level level, RoomTypesEnum type) {
+    public Room(Building building, Level level, RoomTypesEnum type, String name) {
         this.building = building;
         this.level = level;
         this.type = type;
-        name = this.level.createRoomNumber();
-        equipmentList = new ArrayList<>();
+        this.name = name;
     }
 
     @Override
@@ -87,16 +88,16 @@ public class Room extends Maintainable implements Comparable<Room> {
         this.type = type;
     }
 
-    public List<Equipment> getEquipmentList() {
-        return equipmentList;
+    public ArrayList<Equipment> getEquipmentList() {
+        return equipmentVerwaltung.getEquipmentList();
     }
 
     public void addEquipment(Equipment equipment) {
-        equipmentList.add(equipment);
+        equipmentVerwaltung.addEquipment(equipment);
     }
 
     public void removeEquipment(Equipment equipment) {
-        equipmentList.remove(equipment);
+        equipmentVerwaltung.removeEquipment(equipment);
     }
 
     public int getSeatCount() {
@@ -108,7 +109,7 @@ public class Room extends Maintainable implements Comparable<Room> {
     }
 
     public String toString() {
-        return this.name + " on level " + this.level.getLevelNumber() + " in " + this.building.getName();
+        return "Raum" + this.getName();
     }
 
     @Override

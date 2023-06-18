@@ -1,7 +1,6 @@
 package test;
 
-import ticketSystem.Ticket;
-
+import classes.Ticket;
 import enums.GroupEnum;
 import enums.PriorityEnum;
 import enums.StatusEnum;

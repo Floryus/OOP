@@ -2,14 +2,14 @@ package classes;
 
 import java.util.ArrayList;
 
+import classes.verwaltungsklassen.RoomVerwaltung;
 import enums.RoomTypesEnum;
 
 public class Level extends Maintainable implements Comparable<Level> {
     int levelNumber;
     int maxRooms;
     Building building;
-    ArrayList<Room> rooms = new ArrayList<Room>();
-    private int currRoomNumber = 0;
+    private RoomVerwaltung roomVerwaltung = new RoomVerwaltung();
 
     public Level(int levelNumber, Building building, int maxRooms) {
         this.levelNumber = levelNumber;
@@ -21,16 +21,11 @@ public class Level extends Maintainable implements Comparable<Level> {
      * @param rte
      * @return Room
      */
-    public Room createRoom(RoomTypesEnum rte) {
+    public Room createRoom(String name, RoomTypesEnum rte) {
 
-        Room r = new Room(this.building, this, rte);
-        rooms.add(r);
+        Room r = new Room(this.building, this, rte, name);
+        roomVerwaltung.addRoom(r);
         return r;
-    }
-
-    public String createRoomNumber() {
-        currRoomNumber++;
-        return String.valueOf(this.levelNumber) + "." + String.valueOf(currRoomNumber - 1);
     }
 
     @Override
@@ -39,11 +34,11 @@ public class Level extends Maintainable implements Comparable<Level> {
     }
 
     public void deleteRoom(Room room) {
-        this.rooms.remove(room);
+        this.roomVerwaltung.removeRoom(room);
     }
 
     public ArrayList<Room> getRooms() {
-        return rooms;
+        return roomVerwaltung.getRooms();
     }
 
     public int getMaxRooms() {
@@ -58,8 +53,12 @@ public class Level extends Maintainable implements Comparable<Level> {
         return levelNumber;
     }
 
+    public Building getBuilding() {
+        return building;
+    }
+
     public String toString() {
-        return "This level is number " + this.levelNumber + " of " + this.currRoomNumber + " in "
+        return "This level is number " + this.levelNumber + " of " + roomVerwaltung.getRooms().size() + " in "
                 + this.building.toString();
     }
 

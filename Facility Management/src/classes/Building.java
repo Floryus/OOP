@@ -2,10 +2,12 @@ package classes;
 
 import java.util.ArrayList;
 
+import classes.verwaltungsklassen.LevelVerwaltung;
+
 public class Building extends Maintainable implements Comparable<Building> {
     private String name;
     private int maxLevels;
-    private ArrayList<Level> levels = new ArrayList<Level>();
+    private LevelVerwaltung levelVerwaltung = new LevelVerwaltung();
     private Address address;
     private int employeeCount;
     private int constructionYear;
@@ -30,16 +32,16 @@ public class Building extends Maintainable implements Comparable<Building> {
      * @return Level
      */
     public Level createLevel(int maxRooms) {
-        Level lvl = new Level(levels.size(), this, maxRooms);
-        levels.add(lvl);
+        Level lvl = new Level(levelVerwaltung.getLevels().size(), this, maxRooms);
+        levelVerwaltung.addLevel(lvl);
         return lvl;
     }
 
     public Level getLevelByLevelNumber(int number) throws InvalidException {
-        if (number < 0 || number >= levels.size()) {
+        if (number < 0 || number >= levelVerwaltung.getLevels().size()) {
             throw new InvalidException("Ungültiger Level-Index: " + number);
         }
-        return levels.get(number);
+        return levelVerwaltung.getLevels().get(number);
     }
 
     @Override
@@ -49,11 +51,11 @@ public class Building extends Maintainable implements Comparable<Building> {
     }
 
     public void deleteLevel(Level level) {
-        this.levels.remove(level);
+        this.levelVerwaltung.removeLevel(level);
     }
 
     public ArrayList<Level> getLevels() {
-        return levels;
+        return levelVerwaltung.getLevels();
     }
 
     public String getName() {
@@ -105,7 +107,7 @@ public class Building extends Maintainable implements Comparable<Building> {
     }
 
     public String toString() {
-        return "Building " + this.name + " with " + this.levels.size() + " levels. Address: " + address.toString();
+        return "Building " + this.name;
     }
 
     @Override

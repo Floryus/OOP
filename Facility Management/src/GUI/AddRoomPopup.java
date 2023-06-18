@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 
 public class AddRoomPopup extends JFrame {
 
+    private JTextField nameField;
     private JTextField lengthField;
     private JTextField widthField;
     private JTextField heightField;
@@ -34,6 +35,7 @@ public class AddRoomPopup extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Erzeuge Eingabefelder
+        nameField = new JTextField(10);
         lengthField = new JTextField(10);
         widthField = new JTextField(10);
         heightField = new JTextField(10);
@@ -54,7 +56,7 @@ public class AddRoomPopup extends JFrame {
                 RoomTypesEnum type = (RoomTypesEnum) roomTypeComboBox.getSelectedItem();
                 int seatCount = Integer.parseInt(seatCountField.getText());
 
-                Room room = level.createRoom(type);
+                Room room = level.createRoom(nameField.getText(), type);
                 room.setLength(length);
                 room.setWidth(width);
                 room.setHeight(height);
@@ -70,7 +72,9 @@ public class AddRoomPopup extends JFrame {
 
         // Erzeuge Panel für die Komponenten
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(7, 2));
+        panel.setLayout(new GridLayout(8, 2));
+        panel.add(new JLabel("Name:"));
+        panel.add(nameField);
         panel.add(new JLabel("Länge:"));
         panel.add(lengthField);
         panel.add(new JLabel("Breite:"));
