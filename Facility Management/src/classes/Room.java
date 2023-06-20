@@ -109,7 +109,7 @@ public class Room extends Maintainable implements Comparable<Room> {
     }
 
     public String toString() {
-        return "Raum" + this.getName();
+        return "Room " + this.getName();
     }
 
     @Override

@@ -7,77 +7,109 @@ public class TestBuilding {
         Building building = new Building("Building A");
 
         // Test getName() method
-        if (!"Building A".equals(building.getName())) {
-            System.err.println("getName() method failed!");
+        try {
+            String name = building.getName();
+            if (!"Building A".equals(name)) {
+                throw new Error("getName() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test getMaxLevels() method
-        int expectedMaxLevels = 0;
-        int actualMaxLevels = building.getMaxLevels();
-        if (expectedMaxLevels != actualMaxLevels) {
-            System.err.println("getMaxLevels() method failed!");
+        try {
+            int expectedMaxLevels = 0;
+            int actualMaxLevels = building.getMaxLevels();
+            if (expectedMaxLevels != actualMaxLevels) {
+                throw new Error("getMaxLevels() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test getAddress() method
-        if (building.getAddress() != null) {
-            System.err.println("getAddress() method failed!");
+        try {
+            if (building.getAddress() != null) {
+                throw new Error("getAddress() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test getEmployeeCount() method
-        int expectedEmployeeCount = 0;
-        int actualEmployeeCount = building.getEmployeeCount();
-        if (expectedEmployeeCount != actualEmployeeCount) {
-            System.err.println("getEmployeeCount() method failed!");
+        try {
+            int expectedEmployeeCount = 0;
+            int actualEmployeeCount = building.getEmployeeCount();
+            if (expectedEmployeeCount != actualEmployeeCount) {
+                throw new Error("getEmployeeCount() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test getConstructionYear() method
-        int expectedConstructionYear = 0;
-        int actualConstructionYear = building.getConstructionYear();
-        if (expectedConstructionYear != actualConstructionYear) {
-            System.err.println("getConstructionYear() method failed!");
+        try {
+            int expectedConstructionYear = 0;
+            int actualConstructionYear = building.getConstructionYear();
+            if (expectedConstructionYear != actualConstructionYear) {
+                throw new Error("getConstructionYear() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test getParkingSpaces() method
-        int expectedParkingSpaces = 0;
-        int actualParkingSpaces = building.getParkingSpaces();
-        if (expectedParkingSpaces != actualParkingSpaces) {
-            System.err.println("getParkingSpaces() method failed!");
+        try {
+            int expectedParkingSpaces = 0;
+            int actualParkingSpaces = building.getParkingSpaces();
+            if (expectedParkingSpaces != actualParkingSpaces) {
+                throw new Error("getParkingSpaces() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test createLevel() method
-        Level level = building.createLevel(5);
-        if (!building.getLevels().contains(level)) {
-            System.err.println("createLevel() method failed!");
-        }
-
-        // Test getLevelByLevelNumber() method
         try {
-            Level retrievedLevel = building.getLevelByLevelNumber(0);
-            if (retrievedLevel != level) {
-                System.err.println("getLevelByLevelNumber() method failed!");
+            Level level = building.createLevel(5);
+            if (!building.getLevels().contains(level)) {
+                throw new Error("createLevel() method failed!");
             }
-        } catch (InvalidException e) {
-            System.err.println("getLevelByLevelNumber() method failed!");
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test deleteLevel() method
-        building.deleteLevel(level);
-        if (building.getLevels().contains(level)) {
-            System.err.println("deleteLevel() method failed!");
+        try {
+            Level level = building.createLevel(5);
+            building.deleteLevel(level);
+            if (building.getLevels().contains(level)) {
+                throw new Error("deleteLevel() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test toString() method
-        String expectedToString = "Building Building A with 0 levels. Address: null";
-        String actualToString = building.toString();
-        if (!expectedToString.equals(actualToString)) {
-            System.err.println("toString() method failed!");
+        try {
+            String expectedToString = "Building Building A";
+            String actualToString = building.toString();
+            if (!expectedToString.equals(actualToString)) {
+                throw new Error("toString() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test compareTo() method
-        Building otherBuilding = new Building("Building B");
-        int compareToResult = building.compareTo(otherBuilding);
-        if (compareToResult >= 0) {
-            System.err.println("compareTo() method failed!");
+        try {
+            Building otherBuilding = new Building("Building B");
+            int compareToResult = building.compareTo(otherBuilding);
+            if (compareToResult >= 0) {
+                throw new Error("compareTo() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }

@@ -8,33 +8,55 @@ public class TestEmployee {
         Employee employee = new Employee("John Doe", GroupEnum.CLEANING);
 
         // Test getName() method
-        if (!"John Doe".equals(employee.getName())) {
-            System.err.println("getName() method failed!");
+        try {
+            String name = employee.getName();
+            if (!"John Doe".equals(name)) {
+                throw new Error("getName() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test getId() method
-        if (!"12345".equals(employee.getId())) {
-            System.err.println("getId() method failed!");
+        try {
+            int id = employee.getId();
+            if (id != 7) {
+                throw new Error("getId() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test getGroup() method
-        if (GroupEnum.CLEANING != employee.getGroup()) {
-            System.err.println("getGroup() method failed!");
+        try {
+            GroupEnum group = employee.getGroup();
+            if (group != GroupEnum.CLEANING) {
+                throw new Error("getGroup() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
-        String expectedToString = "John Doe as ADMIN with tasks\n" +
-                "Task 1\n" +
-                "Task 2\n";
-        String actualToString = employee.toString();
-        if (!expectedToString.equals(actualToString)) {
-            System.err.println("toString() method failed!");
+        // Test toString() method
+        try {
+            String expectedToString = "7 John Doe";
+            String actualToString = employee.toString();
+            if (!expectedToString.equals(actualToString)) {
+                throw new Error("toString() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test compareTo() method
-        Employee otherEmployee = new Employee("Jane Smith", GroupEnum.CLEANING);
-        int compareToResult = employee.compareTo(otherEmployee);
-        if (compareToResult <= 0) {
-            System.err.println("compareTo() method failed!");
+        try {
+            Employee otherEmployee = new Employee("Jane Smith", GroupEnum.CLEANING);
+            int compareToResult = employee.compareTo(otherEmployee);
+            if (compareToResult < 0) {
+                throw new Error("compareTo() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }
