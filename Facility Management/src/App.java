@@ -87,7 +87,7 @@ public class App {
                 arl.set(i, t);
 
                 // testing
-                // TestManager.testMethods();
+                TestManager.testMethods();
 
         }
 }

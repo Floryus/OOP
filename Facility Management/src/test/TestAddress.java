@@ -7,52 +7,97 @@ public class TestAddress {
         Address address = new Address("Main Street", 123, 45678, "Cityville");
 
         // Test getStreet() method
-        if (!"Main Street".equals(address.getStreet())) {
-            System.err.println("getStreet() method failed!");
+        try {
+            String street = address.getStreet();
+            if (!"Main Street".equals(street)) {
+                throw new Error("getStreet() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test setStreet() method
-        address.setStreet("New Street");
-        if (!"New Street".equals(address.getStreet())) {
-            System.err.println("setStreet() method failed!");
+        try {
+            address.setStreet("New Street");
+            String street = address.getStreet();
+            if (!"New Street".equals(street)) {
+                throw new Error("setStreet() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test getHouseNumber() method
-        if (123 != address.getHouseNumber()) {
-            System.err.println("getHouseNumber() method failed!");
+        try {
+            int houseNumber = address.getHouseNumber();
+            if (123 != houseNumber) {
+                throw new Error("getHouseNumber() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test setHouseNumber() method
-        address.setHouseNumber(456);
-        if (456 != address.getHouseNumber()) {
-            System.err.println("setHouseNumber() method failed!");
+        try {
+            address.setHouseNumber(456);
+            int houseNumber = address.getHouseNumber();
+            if (456 != houseNumber) {
+                throw new Error("setHouseNumber() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test getPostalCode() method
-        if (45678 != address.getPostalCode()) {
-            System.err.println("getPostalCode() method failed!");
+        try {
+            int postalCode = address.getPostalCode();
+            if (45678 != postalCode) {
+                throw new Error("getPostalCode() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test setPostalCode() method
-        address.setPostalCode(78901);
-        if (78901 != address.getPostalCode()) {
-            System.err.println("setPostalCode() method failed!");
+        try {
+            address.setPostalCode(78901);
+            int postalCode = address.getPostalCode();
+            if (78901 != postalCode) {
+                throw new Error("setPostalCode() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test getCity() method
-        if (!"Cityville".equals(address.getCity())) {
-            System.err.println("getCity() method failed!");
+        try {
+            String city = address.getCity();
+            if (!"Cityville".equals(city)) {
+                throw new Error("getCity() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test setCity() method
-        address.setCity("Townville");
-        if (!"Townville".equals(address.getCity())) {
-            System.err.println("setCity() method failed!");
+        try {
+            address.setCity("Townville");
+            String city = address.getCity();
+            if (!"Townville".equals(city)) {
+                throw new Error("setCity() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
 
         // Test toString() method
-        if (!"456 New Street, 78901 Townville".equals(address.toString())) {
-            System.err.println("toString() method failed!");
+        try {
+            String addressString = address.toString();
+            if (!"456 New Street, 78901 Townville".equals(addressString)) {
+                throw new Error("toString() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }

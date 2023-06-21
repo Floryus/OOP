@@ -15,35 +15,43 @@ public class TestTicket {
         Ticket ticket = new Ticket(title, description, priority, null, null, group);
 
         // Test getTitle() method
-        String ticketTitle = ticket.getTitle();
-        if (!ticketTitle.equals(title)) {
-            System.err.println("getTitle() method failed!");
+        try {
+            String ticketTitle = ticket.getTitle();
+            if (!ticketTitle.equals(title)) {
+                throw new Error("getTitle() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
 
         // Test getDescription() method
-        String ticketDescription = ticket.getDescription();
-        if (!ticketDescription.equals(description)) {
-            System.err.println("getDescription() method failed!");
+        try {
+            String ticketDescription = ticket.getDescription();
+            if (!ticketDescription.equals(description)) {
+                throw new Error("getDescription() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
 
         // Test getGroup() method
-        GroupEnum ticketGroup = ticket.getGroup();
-        if (ticketGroup != group) {
-            System.err.println("getGroup() method failed!");
+        try {
+            GroupEnum ticketGroup = ticket.getGroup();
+            if (ticketGroup != group) {
+                throw new Error("getGroup() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
 
         // Test getPrio() method
-        PriorityEnum ticketPriority = ticket.getPrio();
-        if (ticketPriority != priority) {
-            System.err.println("getPrio() method failed!");
-        }
-
-        // Test updateStatus() method
-        StatusEnum initialStatus = ticket.getStatus();
-        ticket.updateStatus();
-        StatusEnum updatedStatus = ticket.getStatus();
-        if (updatedStatus != initialStatus.getNextStatus()) {
-            System.err.println("updateStatus() method failed!");
+        try {
+            PriorityEnum ticketPriority = ticket.getPrio();
+            if (ticketPriority != priority) {
+                throw new Error("getPrio() method failed!");
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
     }
 }

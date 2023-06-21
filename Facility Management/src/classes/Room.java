@@ -220,7 +220,7 @@ public class Room extends Maintainable implements Comparable<Room> {
      * @return Eine textuelle Repräsentation des Raums.
      */
     public String toString() {
-        return "Raum" + this.getName();
+        return "Room " + this.getName();
     }
 
     /**
