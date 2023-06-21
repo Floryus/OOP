@@ -23,6 +23,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import java.awt.BorderLayout;
+import javax.swing.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+
 /*
  * Dieses Panel ist das GUI für das Building Panel.
  * Es bietet eine Baumansicht der Gebäude, Etagen und Räume, sowie deren Equipment.
@@ -30,12 +38,10 @@ import java.util.Collections;
  * Es erlaubt das Anzeigen von Informationen zu den selektierten Objekten.
  * Es erlaubt das Erstellen von Tickets.
  * 
- * @author Florian Schmidt
+ * Autor: Florian Schmidt
  * 
- * 
- * @version 3.4
+ * Version: 3.4
  */
-
 public class BuildingsPanel extends JPanel {
 
     private JTree tree;
@@ -51,6 +57,9 @@ public class BuildingsPanel extends JPanel {
         buildDataPanel();
     }
 
+    /**
+     * Initialisiert die Komponenten des Panels.
+     */
     private void initComponents() {
         setLayout(new BorderLayout());
 
@@ -71,19 +80,19 @@ public class BuildingsPanel extends JPanel {
                 if (selectedNode.getUserObject() instanceof AddTreeNode) {
                     System.out.println("New selected" + selectedNode.getUserObject().toString());
 
-                    AddTreeNode TreeNode = (AddTreeNode) selectedNode.getUserObject();
-                    if (TreeNode.building != null) {
+                    AddTreeNode treeNode = (AddTreeNode) selectedNode.getUserObject();
+                    if (treeNode.building != null) {
                         // createLevel - maxRooms
-                        AddLevelPopup addLevelPopup = new AddLevelPopup(this, TreeNode.building);
+                        AddLevelPopup addLevelPopup = new AddLevelPopup(this, treeNode.building);
                         addLevelPopup.setVisible(true);
-                    } else if (TreeNode.level != null) {
+                    } else if (treeNode.level != null) {
                         // createRoom - Room Types Enum
-                        AddRoomPopup addRoomPopup = new AddRoomPopup(this, TreeNode.level);
+                        AddRoomPopup addRoomPopup = new AddRoomPopup(this, treeNode.level);
                         addRoomPopup.setVisible(true);
-                    } else if (TreeNode.room != null) {
+                    } else if (treeNode.room != null) {
                         // createEquipment - name, description, price, warranty, purchaseDate
                         AddEquipmentPopup addEquipmentPopup = new AddEquipmentPopup(this,
-                                TreeNode.room);
+                                treeNode.room);
                         addEquipmentPopup.setVisible(true);
                     } else {
                         // createBuilding - name, maxLevels, address
@@ -125,6 +134,9 @@ public class BuildingsPanel extends JPanel {
         });
     }
 
+    /**
+     * Erstellt den Baum mit den Gebäuden, Etagen, Räumen und Equipment.
+     */
     private void buildTree() {
         // Erstelle den Wurzelknoten des Baums
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("All buildings");
@@ -188,12 +200,17 @@ public class BuildingsPanel extends JPanel {
         tree.setModel(treeModel);
     }
 
+    /**
+     * Aktualisiert den Baum.
+     */
     public void reloadTree() {
         buildTree();
     }
 
     /**
-     * @param node
+     * Zeigt das Popup-Menü für den ausgewählten Knoten an.
+     *
+     * @param node Der ausgewählte Knoten
      */
     private void showPopup(DefaultMutableTreeNode node) {
         // Erstellen des Popup-Menüs
@@ -205,36 +222,32 @@ public class BuildingsPanel extends JPanel {
         menuItemDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Aktion ausführen, wenn "Info" ausgewählt wird
-                System.out.println("Info selected for: " + node.getUserObject() + node.getUserObject().getClass());
+                // Aktion ausführen, wenn "Delete" ausgewählt wird
+                System.out.println("Delete selected for: " + node.getUserObject() + node.getUserObject().getClass());
 
-                // Überprüfen, ob der Knoten Building Klasse verwendet
+                // Überprüfen, um welche Art von Knoten es sich handelt und die entsprechende
+                // Aktion ausführen
                 if (node.getUserObject() instanceof BuildingTreeNode) {
-                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     BuildingTreeNode buildingTreeNode = (BuildingTreeNode) node.getUserObject();
                     Building building = buildingTreeNode.getBuilding();
                     building.delete();
                     reloadTree();
                 } else if (node.getUserObject() instanceof LevelTreeNode) {
-                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     LevelTreeNode levelTreeNode = (LevelTreeNode) node.getUserObject();
                     Level level = levelTreeNode.getLevel();
                     level.delete();
                     reloadTree();
                 } else if (node.getUserObject() instanceof RoomTreeNode) {
-                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     RoomTreeNode roomTreeNode = (RoomTreeNode) node.getUserObject();
                     Room room = roomTreeNode.getRoom();
                     room.delete();
                     reloadTree();
                 } else if (node.getUserObject() instanceof EquipmentTreeNode) {
-                    // Zugriff auf das Objekt der benutzerdefinierten Klasse erhalten
                     EquipmentTreeNode equipmentTreeNode = (EquipmentTreeNode) node.getUserObject();
                     Equipment equipment = equipmentTreeNode.getEquipment();
                     equipment.delete();
                     reloadTree();
                 }
-
             }
         });
 
@@ -245,12 +258,17 @@ public class BuildingsPanel extends JPanel {
         popupMenu.show(tree, bounds.x + bounds.width, bounds.y);
     }
 
+    /**
+     * Baut das DataBuildingsPanel und fügt es dem Layout hinzu.
+     */
     private void buildDataPanel() {
         dataPanel = new DataBuildingsPanel(this);
-
         add(dataPanel, BorderLayout.EAST);
     }
 
+    /**
+     * Klasse, die einen Knoten im Baum für ein Gebäude repräsentiert.
+     */
     private class BuildingTreeNode {
         private Building building;
 
@@ -268,6 +286,9 @@ public class BuildingsPanel extends JPanel {
         }
     }
 
+    /**
+     * Klasse, die einen Knoten im Baum für eine Etage repräsentiert.
+     */
     private class LevelTreeNode {
         private Level level;
 
@@ -285,6 +306,9 @@ public class BuildingsPanel extends JPanel {
         }
     }
 
+    /**
+     * Klasse, die einen Knoten im Baum für einen Raum repräsentiert.
+     */
     private class RoomTreeNode {
         private Room room;
 
@@ -302,6 +326,9 @@ public class BuildingsPanel extends JPanel {
         }
     }
 
+    /**
+     * Klasse, die einen Knoten im Baum für ein Equipment repräsentiert.
+     */
     private class EquipmentTreeNode {
         private Equipment equipment;
 
@@ -315,40 +342,45 @@ public class BuildingsPanel extends JPanel {
 
         @Override
         public String toString() {
-            return String.valueOf(equipment.getName());
+            return "Equipment " + String.valueOf(equipment.getName());
         }
     }
 
+    /**
+     * Klasse, die einen Knoten im Baum für das Hinzufügen von Objekten
+     * repräsentiert.
+     */
     private class AddTreeNode {
-
         private Building building;
         private Level level;
         private Room room;
-        private Equipment equipment;
 
-        // For create Building
         public AddTreeNode() {
         }
 
-        // For create level
         public AddTreeNode(Building building) {
             this.building = building;
         }
 
-        // For create room
         public AddTreeNode(Level level) {
             this.level = level;
         }
 
-        // For create equipment
         public AddTreeNode(Room room) {
             this.room = room;
         }
 
         @Override
         public String toString() {
-            return "+ NEW";
+            if (building != null) {
+                return "Add Level";
+            } else if (level != null) {
+                return "Add Room";
+            } else if (room != null) {
+                return "Add Equipment";
+            } else {
+                return "Add Building";
+            }
         }
     }
-
 }
