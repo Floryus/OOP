@@ -1,7 +1,12 @@
 package classes;
 
 /**
- * Eine benutzerdefinierte Ausnahme, die ausgelöst wird, wenn ein ungültiger Zustand oder eine ungültige Operation erkannt wird.
+ * Eine benutzerdefinierte Ausnahme, die ausgelöst wird, wenn ein ungültiger
+ * Zustand oder eine ungültige Operation erkannt wird.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
  */
 public class InvalidException extends Exception {
     /**

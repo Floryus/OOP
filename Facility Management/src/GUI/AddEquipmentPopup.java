@@ -13,6 +13,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
 
+/*
+ * Diese Klasse ist das GUI für das Hinzufügen eines Equipments innerhalb eines Popups
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
+ */
+
 public class AddEquipmentPopup extends JFrame {
     private JTextField nameField;
     private JComboBox<EquipTypeEnum> typeComboBox;

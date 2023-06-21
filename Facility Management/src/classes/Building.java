@@ -5,8 +5,14 @@ import java.util.ArrayList;
 import classes.verwaltungsklassen.LevelVerwaltung;
 
 /**
- * Die Klasse Building repräsentiert ein Gebäude, das instandgehalten werden kann.
- * Sie implementiert das Comparable-Interface, um eine Vergleichsmethode für die Sortierung bereitzustellen.
+ * Die Klasse Building repräsentiert ein Gebäude, das instandgehalten werden
+ * kann.
+ * Sie implementiert das Comparable-Interface, um eine Vergleichsmethode für die
+ * Sortierung bereitzustellen.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
  */
 public class Building extends Maintainable implements Comparable<Building> {
     private String name;
@@ -29,18 +35,19 @@ public class Building extends Maintainable implements Comparable<Building> {
 
     /**
      * Konstruktor der Building-Klasse.
-     * Erzeugt ein Gebäude mit dem angegebenen Namen, der maximalen Anzahl von Ebenen, Adresse, Mitarbeiterzahl,
+     * Erzeugt ein Gebäude mit dem angegebenen Namen, der maximalen Anzahl von
+     * Ebenen, Adresse, Mitarbeiterzahl,
      * Baujahr und Parkplätzen.
      *
-     * @param name            Der Name des Gebäudes.
-     * @param maxLevels       Die maximale Anzahl von Ebenen des Gebäudes.
-     * @param address         Die Adresse des Gebäudes.
-     * @param employeeCount   Die Anzahl der Mitarbeiter im Gebäude.
+     * @param name             Der Name des Gebäudes.
+     * @param maxLevels        Die maximale Anzahl von Ebenen des Gebäudes.
+     * @param address          Die Adresse des Gebäudes.
+     * @param employeeCount    Die Anzahl der Mitarbeiter im Gebäude.
      * @param constructionYear Das Baujahr des Gebäudes.
-     * @param parkingSpaces   Die Anzahl der Parkplätze des Gebäudes.
+     * @param parkingSpaces    Die Anzahl der Parkplätze des Gebäudes.
      */
     public Building(String name, int maxLevels, Address address, int employeeCount, int constructionYear,
-                    int parkingSpaces) {
+            int parkingSpaces) {
         this.name = name;
         this.maxLevels = maxLevels;
         this.address = address;
@@ -50,7 +57,8 @@ public class Building extends Maintainable implements Comparable<Building> {
     }
 
     /**
-     * Erzeugt eine neue Ebene mit der angegebenen maximalen Anzahl von Räumen und fügt sie dem Gebäude hinzu.
+     * Erzeugt eine neue Ebene mit der angegebenen maximalen Anzahl von Räumen und
+     * fügt sie dem Gebäude hinzu.
      *
      * @param maxRooms Die maximale Anzahl von Räumen für die neue Ebene.
      * @return Die erstellte Ebene.
@@ -225,8 +233,10 @@ public class Building extends Maintainable implements Comparable<Building> {
      * Wird für die Sortierung verwendet.
      *
      * @param other Das andere Gebäude, mit dem verglichen werden soll.
-     * @return Eine negative ganze Zahl, wenn das Gebäude vor dem anderen Gebäude kommt,
-     *         eine positive ganze Zahl, wenn das Gebäude nach dem anderen Gebäude kommt,
+     * @return Eine negative ganze Zahl, wenn das Gebäude vor dem anderen Gebäude
+     *         kommt,
+     *         eine positive ganze Zahl, wenn das Gebäude nach dem anderen Gebäude
+     *         kommt,
      *         oder 0, wenn beide Gebäude gleich sind.
      */
     @Override

@@ -9,6 +9,14 @@ import classes.Ticket;
 import java.awt.*;
 import java.util.ArrayList;
 
+/*
+ * Diese Klasse ist das GUI für das gesamte Programm, welches die einzelnen Panels beinhaltet
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
+ */
+
 public class FullScreenMain extends JFrame {
 
     private ArrayList<Ticket> tickets;

@@ -6,8 +6,14 @@ import enums.EquipTypeEnum;
 import java.util.GregorianCalendar;
 
 /**
- * Die Klasse Equipment repräsentiert ein Ausrüstungsgegenstand, der instandgehalten werden kann.
- * Sie implementiert das Comparable-Interface, um eine Vergleichsmethode für die Sortierung bereitzustellen.
+ * Die Klasse Equipment repräsentiert ein Ausrüstungsgegenstand, der
+ * instandgehalten werden kann.
+ * Sie implementiert das Comparable-Interface, um eine Vergleichsmethode für die
+ * Sortierung bereitzustellen.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
  */
 public class Equipment extends Maintainable implements Comparable<Equipment> {
     private String name;
@@ -20,14 +26,17 @@ public class Equipment extends Maintainable implements Comparable<Equipment> {
 
     /**
      * Konstruktor der Equipment-Klasse.
-     * Erzeugt ein Ausrüstungsgegenstand mit dem angegebenen Namen, Ausrüstungstyp, Erwerbsdatum,
+     * Erzeugt ein Ausrüstungsgegenstand mit dem angegebenen Namen, Ausrüstungstyp,
+     * Erwerbsdatum,
      * Wartungsintervall und Raum.
      *
-     * @param name              Der Name des Ausrüstungsgegenstands.
-     * @param equipType         Der Ausrüstungstyp des Ausrüstungsgegenstands.
-     * @param acquisitionDate   Das Erwerbsdatum des Ausrüstungsgegenstands.
-     * @param maintenanceInterval Das Wartungsintervall des Ausrüstungsgegenstands in Monaten.
-     * @param room              Der Raum, in dem sich der Ausrüstungsgegenstand befindet.
+     * @param name                Der Name des Ausrüstungsgegenstands.
+     * @param equipType           Der Ausrüstungstyp des Ausrüstungsgegenstands.
+     * @param acquisitionDate     Das Erwerbsdatum des Ausrüstungsgegenstands.
+     * @param maintenanceInterval Das Wartungsintervall des Ausrüstungsgegenstands
+     *                            in Monaten.
+     * @param room                Der Raum, in dem sich der Ausrüstungsgegenstand
+     *                            befindet.
      */
     public Equipment(String name, EquipTypeEnum equipType, GregorianCalendar acquisitionDate, int maintenanceInterval,
             Room room) {
@@ -115,7 +124,8 @@ public class Equipment extends Maintainable implements Comparable<Equipment> {
     /**
      * Setzt das Datum der letzten Wartung des Ausrüstungsgegenstands.
      *
-     * @param lastMaintenanceDate Das Datum der letzten Wartung des Ausrüstungsgegenstands.
+     * @param lastMaintenanceDate Das Datum der letzten Wartung des
+     *                            Ausrüstungsgegenstands.
      */
     public void setLastMaintenanceDate(GregorianCalendar lastMaintenanceDate) {
         this.lastMaintenanceDate = lastMaintenanceDate;
@@ -133,7 +143,8 @@ public class Equipment extends Maintainable implements Comparable<Equipment> {
     /**
      * Setzt das Wartungsintervall des Ausrüstungsgegenstands.
      *
-     * @param maintenanceInterval Das Wartungsintervall des Ausrüstungsgegenstands in Monaten.
+     * @param maintenanceInterval Das Wartungsintervall des Ausrüstungsgegenstands
+     *                            in Monaten.
      */
     public void setMaintenanceInterval(int maintenanceInterval) {
         this.maintenanceInterval = maintenanceInterval;
@@ -185,12 +196,16 @@ public class Equipment extends Maintainable implements Comparable<Equipment> {
     }
 
     /**
-     * Vergleicht den Ausrüstungsgegenstand mit einem anderen Ausrüstungsgegenstand anhand des Namens.
+     * Vergleicht den Ausrüstungsgegenstand mit einem anderen Ausrüstungsgegenstand
+     * anhand des Namens.
      * Wird für die Sortierung verwendet.
      *
-     * @param other Der andere Ausrüstungsgegenstand, mit dem verglichen werden soll.
-     * @return Eine negative ganze Zahl, wenn der Ausrüstungsgegenstand vor dem anderen Ausrüstungsgegenstand kommt,
-     *         eine positive ganze Zahl, wenn der Ausrüstungsgegenstand nach dem anderen Ausrüstungsgegenstand kommt,
+     * @param other Der andere Ausrüstungsgegenstand, mit dem verglichen werden
+     *              soll.
+     * @return Eine negative ganze Zahl, wenn der Ausrüstungsgegenstand vor dem
+     *         anderen Ausrüstungsgegenstand kommt,
+     *         eine positive ganze Zahl, wenn der Ausrüstungsgegenstand nach dem
+     *         anderen Ausrüstungsgegenstand kommt,
      *         oder 0, wenn beide Ausrüstungsgegenstände gleich sind.
      */
     @Override

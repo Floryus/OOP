@@ -6,7 +6,12 @@ import classes.verwaltungsklassen.RoomVerwaltung;
 import enums.RoomTypesEnum;
 
 /**
- * Die Klasse Level repräsentiert eine Etage eines Gebäudes und erbt von der Maintainable-Klasse.
+ * Die Klasse Level repräsentiert eine Etage eines Gebäudes und erbt von der
+ * Maintainable-Klasse.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
  */
 public class Level extends Maintainable implements Comparable<Level> {
     private int levelNumber;
@@ -28,7 +33,8 @@ public class Level extends Maintainable implements Comparable<Level> {
     }
 
     /**
-     * Erzeugt einen neuen Raum auf der Etage mit dem angegebenen Namen und Typ und fügt ihn der Room-Verwaltung hinzu.
+     * Erzeugt einen neuen Raum auf der Etage mit dem angegebenen Namen und Typ und
+     * fügt ihn der Room-Verwaltung hinzu.
      *
      * @param name Der Name des Raums.
      * @param rte  Der Typ des Raums.
@@ -115,11 +121,14 @@ public class Level extends Maintainable implements Comparable<Level> {
 
     /**
      * Vergleicht diese Etage mit einer anderen Etage.
-     * Die Etage wird zuerst nach dem Namen des zugehörigen Gebäudes und dann nach der Etagennummer sortiert.
+     * Die Etage wird zuerst nach dem Namen des zugehörigen Gebäudes und dann nach
+     * der Etagennummer sortiert.
      *
      * @param other Die andere Etage, mit der diese Etage verglichen wird.
-     * @return Eine negative ganze Zahl, wenn diese Etage vor der anderen Etage kommt,
-     *         eine positive ganze Zahl, wenn diese Etage nach der anderen Etage kommt,
+     * @return Eine negative ganze Zahl, wenn diese Etage vor der anderen Etage
+     *         kommt,
+     *         eine positive ganze Zahl, wenn diese Etage nach der anderen Etage
+     *         kommt,
      *         oder 0, wenn beide Etagen gleich sind.
      */
     @Override

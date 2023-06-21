@@ -8,6 +8,10 @@ import classes.Task;
 
 /**
  * Die Klasse TaskVerwaltung verwaltet eine Liste von Aufgaben.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
  */
 public class TaskVerwaltung {
     private ArrayList<Task> tasks;
@@ -51,7 +55,8 @@ public class TaskVerwaltung {
      * Sucht eine Aufgabe anhand ihres Titels in der Liste.
      *
      * @param title Der Titel der gesuchten Aufgabe.
-     * @return Die Aufgabe mit dem angegebenen Titel oder null, wenn keine Aufgabe gefunden wurde.
+     * @return Die Aufgabe mit dem angegebenen Titel oder null, wenn keine Aufgabe
+     *         gefunden wurde.
      */
     public Task findTaskByTitle(String title) {
         for (Task task : tasks) {

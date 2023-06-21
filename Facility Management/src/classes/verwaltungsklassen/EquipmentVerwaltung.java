@@ -9,6 +9,10 @@ import classes.Room;
 
 /**
  * Die Klasse EquipmentVerwaltung verwaltet eine Liste von Geräten.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
  */
 public class EquipmentVerwaltung {
     private ArrayList<Equipment> equipmentList;
@@ -52,7 +56,8 @@ public class EquipmentVerwaltung {
      * Sucht ein Gerät anhand seines Namens in der Liste.
      *
      * @param name Der Name des gesuchten Geräts.
-     * @return Das Gerät mit dem angegebenen Namen oder null, wenn kein Gerät gefunden wurde.
+     * @return Das Gerät mit dem angegebenen Namen oder null, wenn kein Gerät
+     *         gefunden wurde.
      */
     public Equipment findEquipmentByName(String name) {
         for (Equipment equipment : equipmentList) {
@@ -64,7 +69,8 @@ public class EquipmentVerwaltung {
     }
 
     /**
-     * Gibt eine Liste von Geräten zurück, die sich in einem bestimmten Raum befinden.
+     * Gibt eine Liste von Geräten zurück, die sich in einem bestimmten Raum
+     * befinden.
      *
      * @param room Der Raum, nach dem gesucht werden soll.
      * @return Eine Liste von Geräten, die sich in dem angegebenen Raum befinden.

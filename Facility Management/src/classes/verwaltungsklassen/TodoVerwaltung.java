@@ -8,6 +8,10 @@ import classes.Todo;
 
 /**
  * Die Klasse TodoVerwaltung verwaltet eine Liste von Todos.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
  */
 public class TodoVerwaltung {
     private ArrayList<Todo> todos;
@@ -51,7 +55,8 @@ public class TodoVerwaltung {
      * Sucht ein Todo anhand seiner ID in der Liste.
      *
      * @param id Die ID des gesuchten Todos.
-     * @return Das Todo mit der angegebenen ID oder null, wenn kein Todo gefunden wurde.
+     * @return Das Todo mit der angegebenen ID oder null, wenn kein Todo gefunden
+     *         wurde.
      */
     public Todo findTodoById(String id) {
         for (Todo todo : todos) {

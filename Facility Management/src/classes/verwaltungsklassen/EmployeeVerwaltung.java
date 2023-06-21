@@ -8,6 +8,10 @@ import enums.GroupEnum;
 
 /**
  * Die Klasse EmployeeVerwaltung verwaltet eine Liste von Mitarbeitern.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
  */
 public class EmployeeVerwaltung {
     private ArrayList<Employee> employees;
@@ -51,7 +55,8 @@ public class EmployeeVerwaltung {
      * Sucht einen Mitarbeiter anhand seiner ID in der Liste.
      *
      * @param id Die ID des gesuchten Mitarbeiters.
-     * @return Der Mitarbeiter mit der angegebenen ID oder null, wenn kein Mitarbeiter gefunden wurde.
+     * @return Der Mitarbeiter mit der angegebenen ID oder null, wenn kein
+     *         Mitarbeiter gefunden wurde.
      */
     public Employee findEmployeeById(int id) {
         for (Employee employee : employees) {
@@ -63,7 +68,8 @@ public class EmployeeVerwaltung {
     }
 
     /**
-     * Gibt eine Liste von Mitarbeitern zurück, die der angegebenen Gruppe entsprechen.
+     * Gibt eine Liste von Mitarbeitern zurück, die der angegebenen Gruppe
+     * entsprechen.
      *
      * @param group Die Gruppe, nach der gesucht werden soll.
      * @return Eine Liste von Mitarbeitern, die der angegebenen Gruppe entsprechen.

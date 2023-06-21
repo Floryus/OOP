@@ -9,7 +9,12 @@ import java.util.List;
 import classes.verwaltungsklassen.EquipmentVerwaltung;
 
 /**
- * Die Klasse Room repräsentiert einen Raum in einem Gebäude und erbt von der Maintainable-Klasse.
+ * Die Klasse Room repräsentiert einen Raum in einem Gebäude und erbt von der
+ * Maintainable-Klasse.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
  */
 public class Room extends Maintainable implements Comparable<Room> {
     private Building building;
@@ -223,8 +228,10 @@ public class Room extends Maintainable implements Comparable<Room> {
      * Die Räume werden nach ihren Namen sortiert.
      *
      * @param other Der andere Raum, mit dem dieser Raum verglichen wird.
-     * @return Eine negative ganze Zahl, wenn dieser Raum vor dem anderen Raum kommt,
-     *         eine positive ganze Zahl, wenn dieser Raum nach dem anderen Raum kommt,
+     * @return Eine negative ganze Zahl, wenn dieser Raum vor dem anderen Raum
+     *         kommt,
+     *         eine positive ganze Zahl, wenn dieser Raum nach dem anderen Raum
+     *         kommt,
      *         oder 0, wenn beide Räume gleich sind.
      */
     @Override

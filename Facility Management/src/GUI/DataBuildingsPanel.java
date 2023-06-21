@@ -30,6 +30,15 @@ import javax.swing.JScrollPane;
 
 import javax.swing.DefaultListModel;
 
+/*
+ * Diese Klasse ist das GUI innerhalb des Building Panels, welche die eigentlichen Informationen
+ * über das ausgewählte Objekt anzeigt
+ * 
+ * @author Florian Schmidt, Alexander Ansorge
+ * 
+ * @version 1.0
+ */
+
 public class DataBuildingsPanel extends JPanel {
 
     private JLabel dataLabel;

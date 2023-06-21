@@ -8,6 +8,10 @@ import classes.Ticket;
 
 /**
  * Die Klasse TicketVerwaltung verwaltet eine Liste von Tickets.
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
  */
 public class TicketVerwaltung {
     private ArrayList<Ticket> tickets;
@@ -51,7 +55,8 @@ public class TicketVerwaltung {
      * Sucht ein Ticket anhand seines Titels in der Liste.
      *
      * @param title Der Titel des gesuchten Tickets.
-     * @return Das Ticket mit dem angegebenen Titel oder null, wenn kein Ticket gefunden wurde.
+     * @return Das Ticket mit dem angegebenen Titel oder null, wenn kein Ticket
+     *         gefunden wurde.
      */
     public Ticket findTicketByTitle(String title) {
         for (Ticket ticket : tickets) {

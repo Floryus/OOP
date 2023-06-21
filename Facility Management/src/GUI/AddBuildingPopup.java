@@ -9,6 +9,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Diese Klasse ist das GUI für das Hinzufügen eines Gebäudes innerhalb eines Popups
+ * 
+ * @author Florian Schmidt
+ * 
+ * @version 1.0
+ */
+
 public class AddBuildingPopup extends JFrame {
     private JTextField nameField;
     private JTextField streetField;
